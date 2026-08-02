@@ -10,16 +10,16 @@ Sprint 1
 
 ## TODO
 
-- [x] Next.js(App Router) 생성 — 16.2.12, Turbopack, `src/`·`@/*` (2026-08-02)
-- [ ] Tailwind CSS 설정
-- [ ] ESLint 설정
-- [ ] Prettier 설정
+- [x] Next.js(App Router) 생성 — 16.2.12, Turbopack, `src/`·`@/*` (2026-08-02, Step 1)
+- [x] Tailwind CSS 설정 — v4.3.3, CSS 기반 설정 (2026-08-02, Step 1~2)
+- [x] ESLint 설정 — eslint-config-next + eslint-config-prettier (2026-08-02, Step 2)
+- [x] Prettier 설정 — prettier-plugin-tailwindcss 포함, format/format:check 스크립트 (2026-08-02, Step 2)
 - [ ] Husky 설정
 - [ ] lint-staged 설정
 - [ ] Vitest 설정
 - [ ] Playwright 설정
 - [ ] Supabase 연결 준비
-- [ ] 환경 변수(.env.example) 생성
+- [x] 환경 변수(.env.example) 생성 — 변수 이름만, 값 없음. `.env.local`은 Supabase 생성(Step 5) 시 작성 (2026-08-02, Step 2)
 
 ---
 
@@ -36,7 +36,7 @@ Sprint 1
 
 ## Current Blocker
 
-- 없음. Z: 드라이브 문제(W-1)는 로컬 이전으로 해소됨. Step 1(Next.js 스캐폴딩)부터 진행 가능.
+- 없음. Step 1(스캐폴딩)·Step 2(설정 고정) 완료. 다음은 Step 3(Husky + lint-staged)이다.
 
 ## Decision Needed
 

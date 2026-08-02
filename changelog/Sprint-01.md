@@ -8,6 +8,7 @@
 
 ## Added
 
+- 2026-08-02 — Step 2: 설정 고정. `.gitattributes`(LF 기준·바이너리 지정), `.env.example`(변수 이름만: NEXT_PUBLIC_SUPABASE_URL·NEXT_PUBLIC_SUPABASE_ANON_KEY·SUPABASE_SERVICE_ROLE_KEY), `.prettierrc`(tailwind 플러그인), `.prettierignore`(md 문서·산출물·자산 제외). `.gitignore` 보완(test-results·playwright-report 추가, `!.env.example` 예외). `eslint.config.mjs`에 eslint-config-prettier 적용. package.json에 format·format:check 스크립트 추가. devDependencies 추가: prettier 3.9.6, prettier-plugin-tailwindcss 0.8.1, eslint-config-prettier 10.1.8 (승인 A-6·A-7). `.env.local`은 실제 값이 없어 미생성(Step 5에서 작성).
 - 2026-08-02 — Step 1: Next.js 16.2.12 스캐폴딩 (`chore/sprint-1-setup` 브랜치). TypeScript·Tailwind v4·ESLint·App Router·`src/` 디렉터리·`@/*` 별칭·Turbopack. 생성 파일: `package.json`(이름 classquest-builder로 정정), `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `postcss.config.mjs`, `.gitignore`, `src/app/*`, `public/` 기본 에셋. 저장소에 기존 문서가 많아 임시 폴더에 생성 후 이식(제외: 스캐폴드의 README.md·CLAUDE.md·AGENTS.md — 기존 프로젝트 문서 보존).
 
 ## Changed
