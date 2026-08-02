@@ -3,7 +3,7 @@
 ## Sprint 정보
 
 - 목표: 프로젝트 개발 환경 구축
-- 상태: 진행 중 — Step 0(검증)·1(스캐폴딩)·2(설정 고정)·3(Husky·lint-staged)·4(폴더 골격) 완료. 다음: Step 5(Supabase 연결 준비)
+- 상태: 진행 중 — Step 0(검증)·1(스캐폴딩)·2(설정 고정)·3(Husky·lint-staged)·4(폴더 골격) 완료. **다음: Step 6(규칙 상수).** Step 5(Supabase 연결)는 이연 (2026-08-03 결정)
 - 계획: [../docs/sprints/Sprint-01-Setup-Plan.md](../docs/sprints/Sprint-01-Setup-Plan.md)
 
 ## Added
@@ -24,7 +24,8 @@
 
 - 패키지 매니저는 npm을 사용한다.
 - Sprint 1에서는 게임 기능을 구현하지 않는다.
-- Supabase는 우선 클라우드 프로젝트 연결 방식으로 준비한다.
+- ~~Supabase는 우선 클라우드 프로젝트 연결 방식으로 준비한다.~~ → 2026-08-03 아래 결정으로 대체.
+- **2026-08-03 — Supabase 연결 이연 (Project Owner 결정):** Supabase 클라우드 프로젝트 생성·실제 키 발급·패키지 설치·연결 코드를 지금 하지 않고 **UI와 기본 게임 흐름 구현 이후로 연기**한다. 원칙: ① 클라우드 프로젝트 미생성 ② 실제 키 미발급·미입력 ③ Supabase 패키지·연결 코드 미추가 ④ UI·기본 게임 흐름은 mock data로 선구현 ⑤ 데이터 접근 계층은 Supabase로 교체하기 쉽게 분리 ⑥ 교사 로그인·실시간 학생 참여·데이터 저장 구현 직전에 연결 ⑦ 정식 운영 전 RLS·권한 분리·개인정보 보호·백업·요금제 검토. Sprint 1 진행 순서는 Step 4 → 6 → 7 → 8로 조정. Supabase 폴더 골격과 `.env.example` 변수 이름은 유지(값 없음). C-9 검증은 연결 시점으로 이연. (계획서 §12, docs/00_PROJECT_WORKFLOW.md 데이터 계층 방침에 기록)
 
 ## Verification
 
@@ -73,6 +74,6 @@
 
 - 계획서 §4·§2.5의 폴더 20개 생성, 각 폴더에 용도 한 줄 README.md 추가:
   `src/app/(teacher)` `src/app/(play)` `src/app/api` / `src/server/{supabase,grading,progress,auth}` / `src/features/{builder,play,session,library}` / `src/lib/{constants,supabase,utils}` / `src/components/ui` `src/types` / `supabase/{migrations,seed}` / `tests/{unit,e2e}`
-- 구현 코드·인터페이스·라우트·스키마·상수 파일은 만들지 않음 (선제 추상화 금지 준수). `server-only`·Supabase 패키지 미설치 (Step 5).
+- 구현 코드·인터페이스·라우트·스키마·상수 파일은 만들지 않음 (선제 추상화 금지 준수). `server-only`·Supabase 패키지 미설치 (이후 2026-08-03 결정으로 Supabase 연결 자체가 이연됨 — 계획서 §12).
 - 기존 `src/app` 라우트 파일·프로젝트 문서·assets·public 무변경.
 - 검증 (모두 통과): 폴더 20개·README 20개 존재 확인, 실행 코드 미추가 확인(git 변경분이 README 20개 + 문서 교정뿐), `npm run lint`·`npx tsc --noEmit`·`npm run format:check`·`npm run build` 통과.

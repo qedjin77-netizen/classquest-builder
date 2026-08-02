@@ -14,6 +14,8 @@
 
 > 이 문서는 계획이다. **승인 전에는 `npm install`, `create-next-app`, 코드 생성, 라이브러리 설치, Git 변경을 하지 않는다.**
 
+> **일정 변경 (2026-08-03):** **Step 5(Supabase 연결)는 UI와 기본 게임 흐름 구현 이후로 이연한다.** Sprint 1의 진행 순서는 **Step 4 → Step 6 → Step 7 → Step 8**이다. 이연 원칙과 완료 조건 조정은 [§12](#12-일정-변경--supabase-연결-이연-2026-08-03)를 본다.
+
 ---
 
 ## 1. 현재 프로젝트 상태 (2026-08-02 승인 시점 기준으로 갱신)
@@ -90,8 +92,8 @@
 | `src/app/layout.tsx` | 루트 레이아웃 (`lang="ko"`) |
 | `src/app/page.tsx` | 임시 첫 페이지 |
 | `src/app/globals.css` | Tailwind 진입점 |
-| `src/lib/supabase/client.ts` | 브라우저 Supabase 클라이언트 (anon 키) |
-| `src/server/supabase/server.ts` | 서버 Supabase 클라이언트 — **최상단 `import 'server-only'`** |
+| `src/lib/supabase/client.ts` | ~~브라우저 Supabase 클라이언트 (anon 키)~~ — **이연** (§12) |
+| `src/server/supabase/server.ts` | ~~서버 Supabase 클라이언트 — 최상단 `import 'server-only'`~~ — **이연** (§12) |
 | `src/lib/constants/rules.ts` | 규칙 상수 8개 (§2.4) |
 
 ### 2.3 테스트 파일 (예시 각 1개)
@@ -194,6 +196,8 @@
 | A-7 | `prettier-plugin-tailwindcss` | Tailwind 클래스 정렬 | 클래스 순서를 자동 통일. 코드 리뷰 소음 감소. **선택 사항 — 제외해도 무방** |
 
 **이 7개 외에는 아무것도 추가하지 않는다.** 상태 관리, UI 컴포넌트, 폼, 날짜 라이브러리는 필요해지는 시점에 별도 승인을 받는다.
+
+> **일정 변경 (2026-08-03):** A-1(`@supabase/ssr`)·A-2(`server-only`)·A-5(`supabase` CLI)는 **승인은 유지하되 설치를 이연**한다. Supabase 연결 시점(§12)에 설치한다. A-3·A-4(Vitest 관련)·A-6·A-7(Prettier 관련)은 예정대로 진행한다.
 
 ### 3.3 명시적으로 넣지 않는 것
 
@@ -368,7 +372,7 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 | Step 2 | 설정 고정 — strict, `.gitignore`, `.gitattributes`, `.env.example`/`.env.local`, Prettier | 40분 |
 | Step 3 | Husky + lint-staged 설정, pre-commit 동작 확인 (V-8) | 30분 |
 | Step 4 | 폴더 골격 생성 (§4, 한 줄 README 포함) | 30분 |
-| Step 5 | Supabase 클라우드 프로젝트 생성·연결 확인 (§3.2 A-1·A-2 사용) | 1시간 |
+| Step 5 | ~~Supabase 클라우드 프로젝트 생성·연결 확인 (§3.2 A-1·A-2 사용)~~ — **이연** (2026-08-03, §12) | - |
 | Step 6 | 규칙 상수 파일 생성 (§2.4) | 20분 |
 | Step 7 | Vitest·Playwright 설정 + 예시 테스트 각 1개 통과 | 1시간 30분 |
 | Step 8 | 전체 검증(dev·build·lint·tsc·test·e2e), README 채우기, 확인 결과 기록, PR | 40분 |
@@ -396,7 +400,7 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 | # | 조건 |
 | --- | --- |
 | C-8 | §4 폴더 구조 생성, 각 폴더에 용도 README |
-| C-9 | `src/server/` 파일에 `server-only` 적용 — 클라이언트에서 import 시 **빌드 실패를 직접 확인** |
+| C-9 | `src/server/` 파일에 `server-only` 적용 — 클라이언트에서 import 시 **빌드 실패를 직접 확인** — **이연** (§12, Supabase 연결 시점에 검증) |
 | C-10 | 규칙 상수가 `src/lib/constants/rules.ts` 한 곳에만 존재 |
 | C-11 | `tsconfig.json` `strict: true` |
 | C-12 | `git status`에 `.env.local` 미출현 |
@@ -457,7 +461,7 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 - [x] ESLint·Prettier 설정 — eslint-config-prettier·prettier-plugin-tailwindcss 포함 (Step 2, 2026-08-02)
 - [x] Husky·lint-staged 설정 — 통과·차단 실시험 완료, V-8 통과 (Step 3, 2026-08-02)
 - [x] 폴더 골격 생성 — §4·§2.5의 20개 폴더 + 용도 한 줄 README, 선제 추상화 없음 (Step 4, 2026-08-03)
-- [ ] Supabase 클라이언트·서버 경계 준비
+- [ ] ~~Supabase 클라이언트·서버 경계 준비~~ — **이연** (2026-08-03, §12)
 - [x] `.env.example` 및 `.gitignore` 검증 — `!.env.example` 추적·`.env.local` 미추적·비밀값 없음 확인 (Step 2, 2026-08-02)
 - [ ] Vitest 예시 테스트 통과
 - [ ] Playwright smoke 테스트 통과
@@ -465,3 +469,26 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 - [ ] 변경 파일·테스트 결과·미완료 항목 보고
 - [ ] `tasks/NEXT_TASK.md`·`changelog/Sprint-01.md` 갱신
 - [ ] 사용자가 요청한 경우에만 Git commit/push 수행
+
+---
+
+## 12. 일정 변경 — Supabase 연결 이연 (2026-08-03)
+
+Project Owner 결정으로 **Step 5(Supabase 연결) 전체를 UI와 기본 게임 흐름 구현 이후로 이연**한다.
+
+### 원칙
+
+- **Supabase 클라우드 프로젝트를 현재 생성하지 않는다.**
+- **실제 키를 현재 발급하거나 어디에도 입력하지 않는다.** (`.env.example`은 변수 이름만 유지)
+- **Supabase 패키지(A-1·A-2·A-5)와 연결 코드를 현재 추가하지 않는다.**
+- **UI와 기본 게임 흐름은 mock data로 먼저 구현한다.**
+- **데이터 접근 계층은 나중에 Supabase로 교체하기 쉽도록 분리해 설계한다.**
+- **교사 로그인, 실시간 학생 참여, 데이터 저장을 구현하기 직전에 Supabase를 연결한다.**
+- **정식 운영 전에 RLS, 권한 분리, 개인정보 보호, 백업, 요금제를 검토한다.**
+
+### Sprint 1에 미치는 영향
+
+- 진행 순서: Step 4 → **Step 6(규칙 상수) → Step 7(테스트 설정) → Step 8(마무리·PR)**. Step 5는 수행하지 않는다.
+- 유지하는 것: `supabase/migrations`·`supabase/seed`·`src/lib/supabase`·`src/server/supabase` 폴더 골격과 README, `.env.example`의 변수 이름 3개 (값 없음).
+- 이연되는 완료 조건: C-9(server-only 빌드 실패 검증). C-12~C-15(비밀키 안전 조건)는 "실제 키가 존재하지 않음"으로 현재도 충족된다.
+- Supabase 연결 시점이 오면 이 문서의 Step 5 지시와 §3.2 A-1·A-2·A-5 승인을 그대로 사용한다.
