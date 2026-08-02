@@ -3,7 +3,7 @@
 ## Sprint 정보
 
 - 목표: 프로젝트 개발 환경 구축
-- 상태: 계획 승인 대기
+- 상태: 진행 중 — 계획 및 추가 의존성 A-1~A-7 승인됨 (2026-08-02), Step 0 검증 완료
 - 계획: [../docs/sprints/Sprint-01-Setup-Plan.md](../docs/sprints/Sprint-01-Setup-Plan.md)
 
 ## Added
@@ -27,4 +27,10 @@
 
 ## Verification
 
-아직 실행한 테스트 없음.
+### 2026-08-02 — Step 0: 개발 환경·Z: 드라이브 검증
+
+- 도구 버전 확인: Node v24.15.0, npm 11.12.1, Git 2.54.0 — 계획서 기록과 일치.
+- W-3 (`safe.directory`): 전역 등록 완료. git status/commit/push 정상 동작 확인.
+- W-1 (Z:에서 npm 설치): **실패 확정.** Z: 임시 폴더에서 `npm init`·`npm install`이 EPERM으로 실패. node.exe의 파일 생성·쓰기·rename이 Z:에서 전부 거부됨(진단 스크립트로 확인). 동일 시험이 로컬 C:에서는 모두 성공(npm install 포함) → Z: 드라이브 고유 문제로 판정. git.exe·PowerShell의 쓰기는 정상.
+- W-2 (파일 감시): 미검증 — W-1 실패로 Z: 개발이 불가하여 로컬 이전 후 확인.
+- 결론: 계획 §9 R-1 발생. **로컬 디스크 이전 결정 대기** (tasks/NEXT_TASK.md Blocker 기재).

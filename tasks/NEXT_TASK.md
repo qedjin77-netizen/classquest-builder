@@ -36,15 +36,18 @@ Sprint 1
 
 ## Current Blocker
 
-- 없음. 단, Z: 네트워크 드라이브에서 `npm install`과 파일 감시가 정상 동작하는지 Sprint 1 첫 단계에서 검증한다.
+- **Z: 드라이브에서 node.exe 파일 쓰기 불가 (W-1 실패 확정, 2026-08-02).** `npm install`·`create-next-app`이 Z:에서 실행 불가. 로컬 디스크 이전 결정 전까지 Step 1 이후 진행 불가. 상세는 계획서 §1.4 참고.
 
 ## Decision Needed
 
-- `docs/sprints/Sprint-01-Setup-Plan.md` 승인
-- 계획에 기재된 추가 개발 의존성 승인
-- Z: 드라이브 검증 실패 시 프로젝트를 로컬 디스크로 이전할지 결정
+- **프로젝트 작업 사본을 어느 로컬 경로로 이전할지** (예: `C:\dev\classquest-builder`). Z:의 원본은 git 원격(GitHub)과 함께 동기화 지점으로 유지 가능.
+
+## Done Decisions
+
+- `docs/sprints/Sprint-01-Setup-Plan.md` 승인 (2026-08-02)
+- 추가 개발 의존성 A-1~A-7 승인 (2026-08-02)
 
 ## Risk
 
-- 네트워크 드라이브에서 패키지 설치·HMR·파일 잠금이 불안정할 수 있다.
+- 로컬 이전 후 Z: 원본과 로컬 사본의 이중 관리 — 동기화는 git(GitHub origin) 경유로만 한다.
 - Next.js·Tailwind·Supabase 패키지의 최신 버전과 문서가 계획 작성 시점 이후 달라질 수 있으므로 설치 직전 실제 버전을 확인한다.

@@ -6,7 +6,7 @@
 | --- | --- |
 | 스프린트 | Sprint 1 (프로젝트 셋업) |
 | 작성일 | 2026-08-02 |
-| 상태 | **승인 대기** |
+| 상태 | **승인됨** (2026-08-02 — 계획 및 추가 의존성 A-1~A-7 전체 승인) |
 | 기준 요구사항 | Sprint 0에서 확정한 [../01_REQUIREMENTS_DECISIONS.md](../01_REQUIREMENTS_DECISIONS.md) (D-01 ~ D-12) |
 | 선행 문서 | [PROJECT.md](../../PROJECT.md) · [CLAUDE.md](../../CLAUDE.md) · [README.md](../../README.md) |
 
@@ -16,22 +16,22 @@
 
 ---
 
-## 1. 현재 프로젝트 상태 (2026-08-02 재분석)
+## 1. 현재 프로젝트 상태 (2026-08-02 승인 시점 기준으로 갱신)
 
 ### 1.1 저장소
 
 | 항목 | 상태 |
 | --- | --- |
-| Git 저장소 | 초기화됨. `main` 브랜치, 커밋 1개(`61beb51` — 문서 확정) |
-| 원격 | `origin/main` 존재 |
-| 미커밋 파일 | `docs/../archive/02_SPRINT_00_PLAN_REPLACED.md` (untracked) |
-| `safe.directory` | **미등록** — Z: 드라이브 특성으로 매 Git 명령마다 오류. Sprint 1 착수 시 등록 필요 |
+| Git 저장소 | 초기화됨. `main` 브랜치, 커밋 2개. 최신 커밋 `d7c6a68` — 문서 구조 개편(tasks/·changelog/·decisions/·docs/ 재편) 반영 |
+| 원격 | `origin/main` 존재, `d7c6a68`까지 push 완료 (동기화 상태) |
+| 미커밋 파일 | 없음 — 작업 트리 깨끗함 |
+| `safe.directory` | **등록 완료** (2026-08-02) — Git 명령 정상 동작 |
 
 ### 1.2 파일 구성
 
 | 항목 | 상태 |
 | --- | --- |
-| 문서 (`PROJECT.md`, `CLAUDE.md`, `README.md`, `docs/` 2건) | 완료 |
+| 문서 세트 v2.0 (`PROJECT.md`, `CLAUDE.md`, `README.md`, `docs/`, `tasks/`, `changelog/`, `decisions/`, `scripts/`) | 완료 — `d7c6a68`로 커밋됨 |
 | `assets/` (backgrounds, objects, characters, ui, audio, icons) | 빈 폴더 + `.gitkeep` |
 | `public/`, `supabase/`, `tests/` | 빈 폴더 + `.gitkeep` |
 | 애플리케이션 코드 | **없음** — `package.json`, 설정 파일, 소스 코드 일체 없음 |
@@ -50,11 +50,13 @@
 
 프로젝트가 네트워크 드라이브(Z:)에 있다. **Sprint 1의 첫 관문은 아래 검증이다.**
 
-| # | 확인 항목 | 실패 시 |
+| # | 확인 항목 | 결과 (2026-08-02 검증) |
 | --- | --- | --- |
-| W-1 | `npm install`이 Z: 드라이브에서 정상 완료되는가 (임시 폴더에서 소규모로 선검증) | 로컬 디스크 이전을 먼저 결정 |
-| W-2 | Next.js 개발 서버 파일 감시(HMR)가 동작하는가 | 폴링 감시 설정 또는 로컬 이전 |
-| W-3 | Git `safe.directory` 등록 | 등록만 하면 해결 |
+| W-1 | `npm install`이 Z: 드라이브에서 정상 완료되는가 (임시 폴더에서 소규모로 선검증) | **실패 확정** — node.exe가 Z:에서 파일 생성·쓰기 자체가 EPERM으로 거부됨. `npm init`·`npm install` 모두 불가. 동일 시험이 로컬 C:에서는 전부 성공 → Z: 드라이브 고유 문제. git.exe·PowerShell 쓰기는 정상이므로 node 계열 프로세스에 대한 차단(보안 소프트웨어 또는 드라이브 정책)으로 추정 |
+| W-2 | Next.js 개발 서버 파일 감시(HMR)가 동작하는가 | 미검증 — W-1 실패로 Z:에서는 개발 자체가 불가하여 무의미. 로컬 이전 후 재확인 |
+| W-3 | Git `safe.directory` 등록 | **완료** — 2026-08-02 등록됨 |
+
+> **판정: R-1 발생.** 계획 §9 R-1의 대응에 따라 **프로젝트를 로컬 디스크로 이전하는 결정이 필요하다.** Z:는 문서·자산 보관과 git 원격 동기화 용도로는 정상 동작한다.
 
 ---
 
@@ -342,8 +344,8 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 
 | 항목 | 내용 |
 | --- | --- |
-| `safe.directory` 등록 | Z: 드라이브 오류 해소. 매 명령 실패 중 |
-| 미커밋 문서 정리 | `docs/../archive/02_SPRINT_00_PLAN_REPLACED.md`(untracked)와 이 문서를 `docs/*` 브랜치로 커밋 |
+| `safe.directory` 등록 | **완료** (2026-08-02) |
+| 미커밋 문서 정리 | **완료** — 문서 구조 개편 전체를 `d7c6a68`로 `main`에 커밋·push함 (사용자 지시로 main 직접 커밋. 본 계획의 브랜치 규칙은 이후 작업부터 적용) |
 
 ---
 
