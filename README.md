@@ -72,7 +72,7 @@
 - **교사의 이미지·오디오 업로드** — 제공 자산에서만 선택한다
 - **다단계 힌트** — 문제당 힌트는 1개다
 
-전체 목록과 결정 배경은 [docs/00_REQUIREMENTS_DECISIONS.md](docs/00_REQUIREMENTS_DECISIONS.md)에 있다.
+전체 목록과 결정 배경은 [docs/01_REQUIREMENTS_DECISIONS.md](docs/01_REQUIREMENTS_DECISIONS.md)에 있다.
 
 ---
 
@@ -111,7 +111,8 @@
 | --- | --- |
 | 프로젝트 문서 (`PROJECT.md`, `CLAUDE.md`, `README.md`) | 완료 |
 | 폴더 구조 | 완료 |
-| 요구사항 결정 기록 (`docs/00_REQUIREMENTS_DECISIONS.md`) | 완료 (2026-08-02 확정) |
+| 요구사항 결정 기록 (`docs/01_REQUIREMENTS_DECISIONS.md`) | 완료 (2026-08-02 확정) |
+| 시스템 아키텍처 초안 (`docs/02_ARCHITECTURE.md`) | 완료 |
 | Next.js 프로젝트 초기화 | 예정 |
 | Supabase 스키마 · RLS | 예정 |
 | 교사용 제작기 | 예정 |
@@ -126,39 +127,62 @@
 
 ## 문서 구조
 
-```
+```text
 classquest-builder/
-├─ PROJECT.md          프로젝트 전체 사양 (요구사항, 게임 구조, 데이터 모델, 일정)
-├─ CLAUDE.md           Claude Code 개발 규칙 (금지 사항, 도메인 규칙, 보고 형식)
-├─ README.md           이 문서 — 프로젝트 소개
+├─ PROJECT.md                 프로젝트 전체 사양
+├─ CLAUDE.md                  Claude Code 개발 규칙
+├─ README.md                  프로젝트 소개와 문서 안내
+│
+├─ tasks/
+│  ├─ NEXT_TASK.md            현재 Sprint의 작업
+│  ├─ BACKLOG.md              후순위·승인 대기 작업
+│  └─ DONE.md                 완료 작업 요약
+│
+├─ changelog/
+│  ├─ README.md               Sprint 변경 이력 목차
+│  ├─ Sprint-00.md            요구사항 확정 이력
+│  └─ Sprint-01.md            프로젝트 셋업 이력
+│
+├─ decisions/
+│  ├─ README.md               ADR 목차
+│  ├─ ADR-001-SUPABASE.md
+│  ├─ ADR-002-TEAM-MODE.md
+│  ├─ ADR-003-VERSION-POLICY.md
+│  └─ ADR-004-STUDENT-IDENTITY.md
 │
 ├─ docs/
-│  └─ 00_REQUIREMENTS_DECISIONS.md   확정된 요구사항 결정 · 이유 · 제외 항목 · 추후 검토
-│                      (이후 스키마 · API · 화면 설계 문서가 여기에 추가된다)
-├─ assets/             게임 리소스
-│  ├─ backgrounds/     방 배경 이미지
-│  ├─ objects/         배치용 오브젝트 이미지
-│  ├─ characters/      캐릭터 이미지
-│  ├─ ui/              UI 이미지
-│  ├─ audio/           BGM · 환경음 · 효과음
-│  └─ icons/           아이콘
-├─ public/             정적 파일 (웹에 그대로 제공)
-├─ supabase/           DB 마이그레이션 · RLS 정책 · 시드
-└─ tests/              Vitest · Playwright 테스트
+│  ├─ 00_PROJECT_WORKFLOW.md
+│  ├─ 01_REQUIREMENTS_DECISIONS.md
+│  ├─ 02_ARCHITECTURE.md
+│  ├─ 03_DATABASE.md
+│  ├─ 04_UI_GUIDE.md
+│  ├─ 05_ART_GUIDE.md
+│  ├─ 06_AUDIO_GUIDE.md
+│  ├─ 07_GAME_RULE.md
+│  ├─ 08_DEPLOYMENT.md
+│  ├─ sprints/
+│  │  └─ Sprint-01-Setup-Plan.md
+│  └─ archive/
+│     └─ 02_SPRINT_00_PLAN_REPLACED.md
+│
+├─ assets/
+├─ public/
+├─ src/
+├─ supabase/
+└─ tests/
 ```
 
 ### 읽는 순서
 
-1. [README.md](README.md) — 프로젝트가 무엇인지
-2. [PROJECT.md](PROJECT.md) — 무엇을 만드는지 (사양의 기준 문서)
-3. [docs/00_REQUIREMENTS_DECISIONS.md](docs/00_REQUIREMENTS_DECISIONS.md) — 왜 그렇게 정했는지
-4. [CLAUDE.md](CLAUDE.md) — 어떻게 만드는지 (개발 규칙)
-5. [docs/](docs/) — 세부 설계
+1. [README.md](README.md) — 프로젝트 개요
+2. [docs/00_PROJECT_WORKFLOW.md](docs/00_PROJECT_WORKFLOW.md) — 협업·승인 절차
+3. [PROJECT.md](PROJECT.md) — 제품 사양
+4. [docs/01_REQUIREMENTS_DECISIONS.md](docs/01_REQUIREMENTS_DECISIONS.md) — 결정 배경
+5. [CLAUDE.md](CLAUDE.md) — 구현 규칙
+6. [docs/02_ARCHITECTURE.md](docs/02_ARCHITECTURE.md) — 시스템 구조
+7. [tasks/NEXT_TASK.md](tasks/NEXT_TASK.md) — 현재 실행할 작업
 
-> 사양에 대한 판단이 필요하면 **`PROJECT.md`를 기준**으로 한다. README와 내용이 다르면 `PROJECT.md`가 우선이다.
-> 개별 결정의 배경이 필요하면 `docs/00_REQUIREMENTS_DECISIONS.md`를 본다.
-
----
+> 사양은 `PROJECT.md`, 결정 이유는 `docs/01_REQUIREMENTS_DECISIONS.md`, 구현 규칙은 `CLAUDE.md`를 기준으로 한다.
 
 ## 설치 및 실행
 

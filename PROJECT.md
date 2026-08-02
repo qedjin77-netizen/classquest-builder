@@ -412,7 +412,7 @@ MVP에서 다룰 주요 엔티티. (상세 스키마는 `docs/` 및 `supabase/` 
 
 ## 15. 확정된 세부 결정
 
-2026-08-02 확정. 결정 배경과 추후 검토 항목은 [docs/00_REQUIREMENTS_DECISIONS.md](docs/00_REQUIREMENTS_DECISIONS.md)에 기록한다.
+2026-08-02 확정. 결정 배경과 추후 검토 항목은 [docs/01_REQUIREMENTS_DECISIONS.md](docs/01_REQUIREMENTS_DECISIONS.md)에 기록한다.
 
 | 항목 | 확정 내용 |
 | --- | --- |
@@ -432,3 +432,24 @@ MVP에서 다룰 주요 엔티티. (상세 스키마는 `docs/` 및 `supabase/` 
 | 유료 거래 | **제외.** 무료 공개·검색·미리보기·복제만 지원 |
 | 자동 저장 | **초안에만 적용.** 게시 시 불변 스냅샷 생성, 진행 중 수업은 시작 당시 버전 유지 |
 | 정답 보안 | 번들·HTML·클라이언트 상태에 정답 원문 없음. 교사용 편집 화면에서만 권한 확인 후 조회 |
+
+
+---
+
+## 부록: 기준 문서
+
+- [docs/00_PROJECT_WORKFLOW.md](docs/00_PROJECT_WORKFLOW.md) — 역할·승인·문서 충돌 해결
+- [docs/01_REQUIREMENTS_DECISIONS.md](docs/01_REQUIREMENTS_DECISIONS.md) — 확정 결정과 이유
+- [docs/sprints/Sprint-01-Setup-Plan.md](docs/sprints/Sprint-01-Setup-Plan.md) — 현재 승인 대기 중인 셋업 계획
+- [docs/02_ARCHITECTURE.md](docs/02_ARCHITECTURE.md) — 시스템 경계와 구현 구조
+
+사양 변경은 이 문서와 요구사항 결정 기록을 먼저 갱신한 뒤 구현한다.
+
+
+## 운영 문서
+
+- [tasks/NEXT_TASK.md](tasks/NEXT_TASK.md) — 현재 Sprint의 실행 항목
+- [tasks/BACKLOG.md](tasks/BACKLOG.md) — 승인 전·후순위 작업
+- [tasks/DONE.md](tasks/DONE.md) — 완료된 주요 작업 요약
+- [changelog/README.md](changelog/README.md) — Sprint별 변경 이력 목차
+- [decisions/README.md](decisions/README.md) — 주요 아키텍처 결정 기록(ADR) 목차
