@@ -10,7 +10,7 @@ Sprint 1
 
 ## TODO
 
-- [ ] Next.js(App Router) 생성
+- [x] Next.js(App Router) 생성 — 16.2.12, Turbopack, `src/`·`@/*` (2026-08-02)
 - [ ] Tailwind CSS 설정
 - [ ] ESLint 설정
 - [ ] Prettier 설정

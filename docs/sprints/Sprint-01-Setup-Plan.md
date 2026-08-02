@@ -53,7 +53,7 @@
 | # | 확인 항목 | 결과 (2026-08-02 검증) |
 | --- | --- | --- |
 | W-1 | `npm install`이 Z: 드라이브에서 정상 완료되는가 (임시 폴더에서 소규모로 선검증) | **실패 확정** — node.exe가 Z:에서 파일 생성·쓰기 자체가 EPERM으로 거부됨. `npm init`·`npm install` 모두 불가. 동일 시험이 로컬 C:에서는 전부 성공 → Z: 드라이브 고유 문제. git.exe·PowerShell 쓰기는 정상이므로 node 계열 프로세스에 대한 차단(보안 소프트웨어 또는 드라이브 정책)으로 추정 |
-| W-2 | Next.js 개발 서버 파일 감시(HMR)가 동작하는가 | 미검증 — W-1 실패로 Z:에서는 개발 자체가 불가하여 무의미. 로컬 이전 후 재확인 |
+| W-2 | Next.js 개발 서버 파일 감시(HMR)가 동작하는가 | **통과** (2026-08-02, 로컬 이전 후) — 로컬 경로에서 dev 서버 기동 중 `page.tsx` 수정 시 153ms에 재컴파일 확인 |
 | W-3 | Git `safe.directory` 등록 | **완료** — 2026-08-02 등록됨 |
 
 > **판정: R-1 발생.** 계획 §9 R-1의 대응에 따라 **프로젝트를 로컬 디스크로 이전하는 결정이 필요하다.** Z:는 문서·자산 보관과 git 원격 동기화 용도로는 정상 동작한다.
@@ -215,6 +215,16 @@
 | V-6 | Playwright 브라우저 바이너리 설치 성공 여부 | `npx playwright install` (실패 시 Chromium만) |
 | V-7 | Node 24와 각 패키지 호환성 | `npm install` 경고 확인 |
 | V-8 | Husky가 Z: 드라이브의 Git 훅에서 정상 동작하는가 | pre-commit 훅 실제 실행 |
+
+#### 확인 결과 기록 (2026-08-02, Step 1 착수 시점)
+
+| # | 결과 |
+| --- | --- |
+| V-1 | Next.js **16.2.12** (create-next-app 동일 버전). Node v24.15.0에서 설치·기동 정상 |
+| V-2 | Tailwind **v4.3.3** — CSS 기반 설정 채택 (`postcss.config.mjs` + `globals.css`의 `@import "tailwindcss"`). `tailwind.config.ts`는 만들지 않음 |
+| V-5 | Vitest 최신 4.1.10, @playwright/test 1.62.1 (설치는 Step 7) |
+| V-7 | `npm install` 106초 완료, peer dependency 경고 없음. React 19.2.4, TypeScript 5.9.3 |
+| 참고 | 작업 위치가 로컬 C:로 이전되어 V-8의 "Z: 드라이브" 조건은 로컬 경로 기준으로 확인한다 |
 
 ---
 

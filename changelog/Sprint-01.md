@@ -8,7 +8,7 @@
 
 ## Added
 
-아직 구현 작업 없음.
+- 2026-08-02 — Step 1: Next.js 16.2.12 스캐폴딩 (`chore/sprint-1-setup` 브랜치). TypeScript·Tailwind v4·ESLint·App Router·`src/` 디렉터리·`@/*` 별칭·Turbopack. 생성 파일: `package.json`(이름 classquest-builder로 정정), `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `postcss.config.mjs`, `.gitignore`, `src/app/*`, `public/` 기본 에셋. 저장소에 기존 문서가 많아 임시 폴더에 생성 후 이식(제외: 스캐폴드의 README.md·CLAUDE.md·AGENTS.md — 기존 프로젝트 문서 보존).
 
 ## Changed
 
@@ -41,3 +41,10 @@
 - 프로젝트 폴더 전체를 `C:\Users\user\Documents\WM 게임 프로젝트\4. 게임, 퀴즈 프로젝트`로 이전. 저장소는 GitHub에서 clone(`0a31c4c`, origin과 동기화), 저장소 외 파일 54개는 Copy-Item으로 복사(개수 일치 확인).
 - 새 경로(한글·공백 포함)에서 `npm init`·`npm install`·`require` 정상 동작 확인.
 - 이후 개발 작업 위치는 로컬 사본이며, Z:와의 공유는 git 원격(GitHub) 경유로만 한다.
+
+### 2026-08-02 — Step 1: 스캐폴딩 검증
+
+- `npm install` 106초, peer 경고 없음 (V-7).
+- `npm run dev` 기동 → `http://localhost:3000` HTTP 200 응답 확인.
+- W-2 (파일 감시): dev 서버 기동 중 `page.tsx` 수정 → 153ms에 재컴파일 확인. **통과.** 시험용 수정은 되돌림.
+- 버전 실물 확인: Next 16.2.12, Tailwind 4.3.3(v4, CSS 기반), React 19.2.4, TS 5.9.3 — 계획서 §3.4 결과표에 기록.
