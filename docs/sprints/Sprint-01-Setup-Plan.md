@@ -35,8 +35,8 @@
 | --- | --- |
 | 문서 세트 v2.0 (`PROJECT.md`, `CLAUDE.md`, `README.md`, `docs/`, `tasks/`, `changelog/`, `decisions/`, `scripts/`) | 완료 — `d7c6a68`로 커밋됨 |
 | `assets/` (backgrounds, objects, characters, ui, audio, icons) | 빈 폴더 + `.gitkeep` |
-| `public/`, `supabase/`, `tests/` | 빈 폴더 + `.gitkeep` |
-| 애플리케이션 코드 | **없음** — `package.json`, 설정 파일, 소스 코드 일체 없음 |
+| `public/`, `supabase/`, `tests/` | 폴더 골격 생성됨 — `supabase/{migrations,seed}`, `tests/{unit,e2e}` + 용도 README (Step 4, 2026-08-03) |
+| 애플리케이션 코드 | ~~없음~~ → **Next.js 16.2.12 스캐폴딩 완료** (Step 1, 2026-08-02) + 설정 고정(Step 2)·Husky(Step 3)·폴더 골격(Step 4)·규칙 상수 `src/lib/constants/rules.ts`(Step 6, 2026-08-03) |
 
 ### 1.3 개발 환경 (Sprint 0 계획 검토 시 확인, 승계)
 
@@ -46,11 +46,11 @@
 | npm | 11.12.1 | 사용 가능 — **패키지 매니저는 npm으로 확정** |
 | Git | 2.54.0.windows.1 | 사용 가능 |
 | Docker | 없음 | Sprint 1에서는 불필요 (클라우드 Supabase 사용) |
-| Supabase CLI | 없음 | devDependency로 설치 예정 (§3.2) |
+| Supabase CLI | 없음 | ~~devDependency로 설치 예정 (§3.2)~~ → 설치 이연 (§12) |
 
-### 1.4 최우선 위험 — Z: 네트워크 드라이브
+### 1.4 최우선 위험 — Z: 네트워크 드라이브 (해소됨)
 
-프로젝트가 네트워크 드라이브(Z:)에 있다. **Sprint 1의 첫 관문은 아래 검증이다.**
+프로젝트가 네트워크 드라이브(Z:)에 있었다. Sprint 1의 첫 관문으로 아래를 검증했고, **2026-08-02 로컬 C:(`C:\Users\user\Documents\WM 게임 프로젝트\...\classquest-builder`)로 이전해 해소됐다.**
 
 | # | 확인 항목 | 결과 (2026-08-02 검증) |
 | --- | --- | --- |
@@ -58,7 +58,7 @@
 | W-2 | Next.js 개발 서버 파일 감시(HMR)가 동작하는가 | **통과** (2026-08-02, 로컬 이전 후) — 로컬 경로에서 dev 서버 기동 중 `page.tsx` 수정 시 153ms에 재컴파일 확인 |
 | W-3 | Git `safe.directory` 등록 | **완료** — 2026-08-02 등록됨 |
 
-> **판정: R-1 발생.** 계획 §9 R-1의 대응에 따라 **프로젝트를 로컬 디스크로 이전하는 결정이 필요하다.** Z:는 문서·자산 보관과 git 원격 동기화 용도로는 정상 동작한다.
+> **판정: R-1 발생 → 대응 완료.** 계획 §9 R-1의 대응에 따라 **2026-08-02 프로젝트를 로컬 디스크로 이전했다.** Z:의 옛 사본은 사용하지 않으며, 동기화는 git 원격(GitHub) 경유로만 한다.
 
 ---
 
@@ -461,6 +461,7 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 - [x] ESLint·Prettier 설정 — eslint-config-prettier·prettier-plugin-tailwindcss 포함 (Step 2, 2026-08-02)
 - [x] Husky·lint-staged 설정 — 통과·차단 실시험 완료, V-8 통과 (Step 3, 2026-08-02)
 - [x] 폴더 골격 생성 — §4·§2.5의 20개 폴더 + 용도 한 줄 README, 선제 추상화 없음 (Step 4, 2026-08-03)
+- [x] 규칙 상수 `src/lib/constants/rules.ts` 생성 — §2.4의 8개 상수, 단일 파일 (Step 6, 2026-08-03)
 - [ ] ~~Supabase 클라이언트·서버 경계 준비~~ — **이연** (2026-08-03, §12)
 - [x] `.env.example` 및 `.gitignore` 검증 — `!.env.example` 추적·`.env.local` 미추적·비밀값 없음 확인 (Step 2, 2026-08-02)
 - [ ] Vitest 예시 테스트 통과

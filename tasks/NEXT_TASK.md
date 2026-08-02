@@ -16,8 +16,8 @@ Sprint 1
 - [x] Prettier 설정 — prettier-plugin-tailwindcss 포함, format/format:check 스크립트 (2026-08-02, Step 2)
 - [x] Husky 설정 — 9.1.7, prepare 스크립트 + pre-commit 훅 (2026-08-02, Step 3)
 - [x] lint-staged 설정 — 17.3.0, JS/TS는 ESLint+Prettier, CSS/JSON은 Prettier. 통과·차단 실시험 완료 (2026-08-02, Step 3)
-- [ ] 규칙 상수 `src/lib/constants/rules.ts` 생성 (Step 6) ← **다음 작업**
-- [ ] Vitest 설정 (Step 7)
+- [x] 규칙 상수 `src/lib/constants/rules.ts` 생성 — 8개 상수 단일 파일 (2026-08-03, Step 6)
+- [ ] Vitest 설정 (Step 7) ← **다음 작업**
 - [ ] Playwright 설정 (Step 7)
 - [ ] ~~Supabase 연결 준비~~ — **이연** (2026-08-03 결정: UI·기본 게임 흐름 구현 이후. 계획서 §12)
 - [x] 환경 변수(.env.example) 생성 — 변수 이름만, 값 없음. `.env.local`은 Supabase 연결 시점(이연)에 작성 (2026-08-02, Step 2)
@@ -37,7 +37,7 @@ Sprint 1
 
 ## Current Blocker
 
-- 없음. Step 0~4 완료 (폴더 골격 20개 + 용도 README 생성, 2026-08-03). **다음은 Step 6(규칙 상수 rules.ts)이다.** Step 5(Supabase 연결)는 이연됨 — 계획서 §12.
+- 없음. Step 0~4·6 완료. **다음은 Step 7(Vitest·Playwright 설정)이다.** Step 5(Supabase 연결)는 이연됨 — 계획서 §12.
 
 ## Decision Needed
 
