@@ -34,3 +34,10 @@
 - W-1 (Z:에서 npm 설치): **실패 확정.** Z: 임시 폴더에서 `npm init`·`npm install`이 EPERM으로 실패. node.exe의 파일 생성·쓰기·rename이 Z:에서 전부 거부됨(진단 스크립트로 확인). 동일 시험이 로컬 C:에서는 모두 성공(npm install 포함) → Z: 드라이브 고유 문제로 판정. git.exe·PowerShell의 쓰기는 정상.
 - W-2 (파일 감시): 미검증 — W-1 실패로 Z: 개발이 불가하여 로컬 이전 후 확인.
 - 결론: 계획 §9 R-1 발생. **로컬 디스크 이전 결정 대기** (tasks/NEXT_TASK.md Blocker 기재).
+
+### 2026-08-02 — R-1 대응: 로컬 디스크 이전 완료
+
+- 추가 진단: Z:·X:·Y:는 문서중앙화 솔루션 가상 드라이브(NPFS, PlusDrive 에이전트), O:/P: 보안디스크는 node 읽기 차단 → 로컬 C:만 개발 가능 판정. robocopy도 Z: 읽기가 차단되어 PowerShell Copy-Item + GitHub clone 방식으로 이전.
+- 프로젝트 폴더 전체를 `C:\Users\user\Documents\WM 게임 프로젝트\4. 게임, 퀴즈 프로젝트`로 이전. 저장소는 GitHub에서 clone(`0a31c4c`, origin과 동기화), 저장소 외 파일 54개는 Copy-Item으로 복사(개수 일치 확인).
+- 새 경로(한글·공백 포함)에서 `npm init`·`npm install`·`require` 정상 동작 확인.
+- 이후 개발 작업 위치는 로컬 사본이며, Z:와의 공유는 git 원격(GitHub) 경유로만 한다.
