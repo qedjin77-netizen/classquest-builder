@@ -49,3 +49,21 @@
 - `npm run dev` 기동 → `http://localhost:3000` HTTP 200 응답 확인.
 - W-2 (파일 감시): dev 서버 기동 중 `page.tsx` 수정 → 153ms에 재컴파일 확인. **통과.** 시험용 수정은 되돌림.
 - 버전 실물 확인: Next 16.2.12, Tailwind 4.3.3(v4, CSS 기반), React 19.2.4, TS 5.9.3 — 계획서 §3.4 결과표에 기록.
+
+### 2026-08-02 — Step 2: 설정 고정 검증
+
+- `npm run lint` 통과 (Prettier 정리 후 재실행도 통과).
+- `npx tsc --noEmit` 오류 없음.
+- `npm run format:check` — 최초 실행에서 스캐폴드 3개 파일 지적 → `npm run format` 후 "All matched files use Prettier code style!" 통과.
+- `.env.example` — `!.env.example` 규칙으로 추적 대상 확인, 커밋 `c18c2c8`에 포함됨. 내용은 변수 이름 3개뿐(값 없음).
+- `.env.local` — `.env*` 규칙으로 미추적 확인 (`git check-ignore`). 실제 값이 없어 파일 자체를 만들지 않음.
+- 비밀값 스캔 — 저장소 내 실제 키 문자열 없음 (package-lock의 sha512 무결성 해시만 검출, 비밀 아님).
+- `npm audit`: high 3건(`sharp` 전이 의존성). 제안된 자동 수정이 Next 9 다운그레이드라 미적용, Step 8에서 재확인.
+
+### 2026-08-02 — Step 3: Husky·lint-staged 실동작 시험
+
+- husky 9.1.7, lint-staged 17.3.0 설치 (Node v24.15.0 호환 확인: husky ≥18, lint-staged ≥22.22.1).
+- `.husky/pre-commit` = `npx lint-staged`. `prepare: husky` 스크립트 추가.
+- **통과 시험**: 정상 TS 파일 stage → pre-commit에서 eslint·prettier 실행 로그 확인 → 커밋 성공. 시험 커밋은 `git reset HEAD~1`로 제거.
+- **차단 시험**: 구문 오류 TS 파일 stage → eslint 파싱 오류로 훅 실패(`husky - pre-commit script failed (code 1)`) → **커밋 차단 확인**, HEAD 불변. 시험 파일 제거.
+- V-8(pre-commit 실동작): **통과** — 로컬 경로 기준.

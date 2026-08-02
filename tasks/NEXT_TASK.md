@@ -14,8 +14,8 @@ Sprint 1
 - [x] Tailwind CSS 설정 — v4.3.3, CSS 기반 설정 (2026-08-02, Step 1~2)
 - [x] ESLint 설정 — eslint-config-next + eslint-config-prettier (2026-08-02, Step 2)
 - [x] Prettier 설정 — prettier-plugin-tailwindcss 포함, format/format:check 스크립트 (2026-08-02, Step 2)
-- [ ] Husky 설정
-- [ ] lint-staged 설정
+- [x] Husky 설정 — 9.1.7, prepare 스크립트 + pre-commit 훅 (2026-08-02, Step 3)
+- [x] lint-staged 설정 — 17.3.0, JS/TS는 ESLint+Prettier, CSS/JSON은 Prettier. 통과·차단 실시험 완료 (2026-08-02, Step 3)
 - [ ] Vitest 설정
 - [ ] Playwright 설정
 - [ ] Supabase 연결 준비
@@ -29,14 +29,14 @@ Sprint 1
 - [x] README 작성
 - [x] 요구사항 확정 (Sprint 0)
 - [x] 워크플로우 문서 작성 (docs/00_PROJECT_WORKFLOW.md)
-- [x] Sprint 1 계획 작성 (docs/sprints/Sprint-01-Setup-Plan.md, 승인 대기)
+- [x] Sprint 1 계획 작성 (docs/sprints/Sprint-01-Setup-Plan.md) — 2026-08-02 계획·의존성 A-1~A-7 승인 완료
 
 
 ---
 
 ## Current Blocker
 
-- 없음. Step 1(스캐폴딩)·Step 2(설정 고정) 완료. 다음은 Step 3(Husky + lint-staged)이다.
+- 없음. Step 0~3 완료. 다음은 Step 4(폴더 골격 생성)이다.
 
 ## Decision Needed
 

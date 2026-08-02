@@ -450,14 +450,14 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 
 승인 후 Claude Code는 아래 항목을 순서대로 진행하고, 각 단계 종료 시 결과를 보고한다.
 
-- [ ] Z: 드라이브에서 npm 설치·파일 감시·Git safe.directory 선검증
-- [ ] Next.js App Router 프로젝트 초기화
-- [ ] TypeScript strict 및 경로 별칭 확인
-- [ ] Tailwind CSS 실제 설치 버전에 맞춰 설정
-- [ ] ESLint·Prettier 설정
-- [ ] Husky·lint-staged 설정
+- [x] Z: 드라이브에서 npm 설치·파일 감시·Git safe.directory 선검증 — W-1 실패 → 로컬 C: 이전으로 해소, W-2·W-3 통과 (Step 0, 2026-08-02)
+- [x] Next.js App Router 프로젝트 초기화 — 16.2.12 (Step 1, 2026-08-02)
+- [x] TypeScript strict 및 경로 별칭 확인 (Step 1~2, 2026-08-02)
+- [x] Tailwind CSS 실제 설치 버전에 맞춰 설정 — v4.3.3, CSS 기반 (Step 1~2, 2026-08-02)
+- [x] ESLint·Prettier 설정 — eslint-config-prettier·prettier-plugin-tailwindcss 포함 (Step 2, 2026-08-02)
+- [x] Husky·lint-staged 설정 — 통과·차단 실시험 완료, V-8 통과 (Step 3, 2026-08-02)
 - [ ] Supabase 클라이언트·서버 경계 준비
-- [ ] `.env.example` 및 `.gitignore` 검증
+- [x] `.env.example` 및 `.gitignore` 검증 — `!.env.example` 추적·`.env.local` 미추적·비밀값 없음 확인 (Step 2, 2026-08-02)
 - [ ] Vitest 예시 테스트 통과
 - [ ] Playwright smoke 테스트 통과
 - [ ] `npm run lint`, `npm run test`, `npm run test:e2e`, `npm run build` 실행
