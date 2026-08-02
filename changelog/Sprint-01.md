@@ -3,7 +3,7 @@
 ## Sprint 정보
 
 - 목표: 프로젝트 개발 환경 구축
-- 상태: 진행 중 — 계획 및 추가 의존성 A-1~A-7 승인됨 (2026-08-02), Step 0 검증 완료
+- 상태: 진행 중 — Step 0(검증)·1(스캐폴딩)·2(설정 고정)·3(Husky·lint-staged)·4(폴더 골격) 완료. 다음: Step 5(Supabase 연결 준비)
 - 계획: [../docs/sprints/Sprint-01-Setup-Plan.md](../docs/sprints/Sprint-01-Setup-Plan.md)
 
 ## Added
@@ -67,3 +67,12 @@
 - **통과 시험**: 정상 TS 파일 stage → pre-commit에서 eslint·prettier 실행 로그 확인 → 커밋 성공. 시험 커밋은 `git reset HEAD~1`로 제거.
 - **차단 시험**: 구문 오류 TS 파일 stage → eslint 파싱 오류로 훅 실패(`husky - pre-commit script failed (code 1)`) → **커밋 차단 확인**, HEAD 불변. 시험 파일 제거.
 - V-8(pre-commit 실동작): **통과** — 로컬 경로 기준.
+- Step 3 종료 시 최종 검사 (모두 통과): `npm run lint` exit 0 · `npx tsc --noEmit` exit 0 · `npm run format:check` "All matched files use Prettier code style!" · `npm run build` exit 0 (정적 라우트 `/`·`/_not-found` 생성) · 최종 `git status`: 커밋 `b751bb4` push 후 working tree clean, origin과 동기화.
+
+### 2026-08-03 — Step 4: 폴더 골격 생성·검증
+
+- 계획서 §4·§2.5의 폴더 20개 생성, 각 폴더에 용도 한 줄 README.md 추가:
+  `src/app/(teacher)` `src/app/(play)` `src/app/api` / `src/server/{supabase,grading,progress,auth}` / `src/features/{builder,play,session,library}` / `src/lib/{constants,supabase,utils}` / `src/components/ui` `src/types` / `supabase/{migrations,seed}` / `tests/{unit,e2e}`
+- 구현 코드·인터페이스·라우트·스키마·상수 파일은 만들지 않음 (선제 추상화 금지 준수). `server-only`·Supabase 패키지 미설치 (Step 5).
+- 기존 `src/app` 라우트 파일·프로젝트 문서·assets·public 무변경.
+- 검증 (모두 통과): 폴더 20개·README 20개 존재 확인, 실행 코드 미추가 확인(git 변경분이 README 20개 + 문서 교정뿐), `npm run lint`·`npx tsc --noEmit`·`npm run format:check`·`npm run build` 통과.

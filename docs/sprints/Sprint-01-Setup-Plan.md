@@ -456,6 +456,7 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 - [x] Tailwind CSS 실제 설치 버전에 맞춰 설정 — v4.3.3, CSS 기반 (Step 1~2, 2026-08-02)
 - [x] ESLint·Prettier 설정 — eslint-config-prettier·prettier-plugin-tailwindcss 포함 (Step 2, 2026-08-02)
 - [x] Husky·lint-staged 설정 — 통과·차단 실시험 완료, V-8 통과 (Step 3, 2026-08-02)
+- [x] 폴더 골격 생성 — §4·§2.5의 20개 폴더 + 용도 한 줄 README, 선제 추상화 없음 (Step 4, 2026-08-03)
 - [ ] Supabase 클라이언트·서버 경계 준비
 - [x] `.env.example` 및 `.gitignore` 검증 — `!.env.example` 추적·`.env.local` 미추적·비밀값 없음 확인 (Step 2, 2026-08-02)
 - [ ] Vitest 예시 테스트 통과

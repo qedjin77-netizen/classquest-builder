@@ -36,7 +36,7 @@ Sprint 1
 
 ## Current Blocker
 
-- 없음. Step 0~3 완료. 다음은 Step 4(폴더 골격 생성)이다.
+- 없음. Step 0~4 완료 (폴더 골격 20개 + 용도 README 생성, 2026-08-03). 다음은 Step 5(Supabase 클라우드 프로젝트 연결 준비)이다.
 
 ## Decision Needed
 
