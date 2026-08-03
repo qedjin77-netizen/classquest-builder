@@ -4,7 +4,7 @@
 
 ## 현재 상태
 
-- 현재 Sprint: 없음 — **Sprint 2 계획 수립 및 승인 대기**
+- 현재 Sprint: [Sprint 2](Sprint-02.md) — **계획 승인 대기** (UI·mock 게임 흐름)
 - 완료된 Sprint: [Sprint 0](Sprint-00.md) · [Sprint 1](Sprint-01.md) (2026-08-03 완료, Supabase 연결은 이연)
 
 ## 운영 규칙

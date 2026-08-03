@@ -188,7 +188,7 @@ Commit 메시지는 Conventional Commits 형식을 따른다.
 3. `docs/01_REQUIREMENTS_DECISIONS.md` — 확정 결정, 배경, 변경 이유
 4. `CLAUDE.md` — 구현·보안·테스트 규칙
 5. 승인된 현재 Sprint 계획
-6. `docs/02_ARCHITECTURE.md` 및 관련 세부 설계 문서
+6. `docs/02_ARCHITECTURE.md` 및 관련 세부 설계 문서 (`docs/design/`, `docs/architecture/` 포함)
 7. `README.md` — 소개와 탐색용 요약
 
 충돌을 해소한 뒤에는 영향받는 문서를 함께 갱신한다. 파일이나 폴더 이름을 바꾸면 저장소 전체에서 이전 이름과 경로를 검색하고 모든 링크 및 일반 텍스트 참조를 동시에 수정한다.
