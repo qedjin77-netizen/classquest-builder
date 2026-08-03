@@ -3,11 +3,12 @@
 ## Sprint 정보
 
 - 목표: 프로젝트 개발 환경 구축
-- 상태: 진행 중 — Step 0(검증)·1(스캐폴딩)·2(설정 고정)·3(Husky·lint-staged)·4(폴더 골격)·6(규칙 상수) 완료. **다음: Step 7(Vitest·Playwright 설정).** Step 5(Supabase 연결)는 이연 (2026-08-03 결정)
+- 상태: 진행 중 — Step 0(검증)·1(스캐폴딩)·2(설정 고정)·3(Husky·lint-staged)·4(폴더 골격)·6(규칙 상수)·7(테스트 환경) 완료. **다음: Step 8(전체 검증·README 정리·PR 준비).** Step 5(Supabase 연결)는 이연 (2026-08-03 결정)
 - 계획: [../docs/sprints/Sprint-01-Setup-Plan.md](../docs/sprints/Sprint-01-Setup-Plan.md)
 
 ## Added
 
+- 2026-08-03 — Step 7: 테스트 환경 구축. devDependencies 설치(승인 A-3·A-4 범위): vitest 4.1.10, @vitejs/plugin-react 6.0.5, vite-tsconfig-paths 6.1.1, @playwright/test 1.62.1 (모두 Node v24 호환 확인). 생성: `vitest.config.ts`(tests/unit 대상, `@/` 별칭 해석), `tests/unit/rules.test.ts`(규칙 상수 4개 검증), `playwright.config.ts`(tests/e2e 대상, Chromium 단일, webServer로 dev 서버 자동 기동), `tests/e2e/smoke.spec.ts`(첫 페이지 성공 응답 — 문구·디자인 비의존). package.json에 test·test:watch·test:e2e 스크립트 추가, tests README 2개 실명령 기준으로 갱신. 결과: **Vitest 4/4 통과(1.09s), Playwright 1/1 통과(23.9s, Chromium 설치 성공)**. Supabase 패키지·연결 없음.
 - 2026-08-03 — Step 6: 규칙 상수 `src/lib/constants/rules.ts` 생성. named export 숫자 상수 8개 (계획서 §2.4와 일치): `ROOM_COUNT=3` `MIN_QUESTIONS_PER_ROOM=3` `MAX_QUESTIONS_PER_ROOM=5` `HINT_UNLOCK_WRONG_COUNT=2` `HINTS_PER_QUESTION=1` `MIN_TEAM_COUNT=2` `MAX_TEAM_COUNT=6` `MAX_STUDENTS_PER_SESSION=30`. 함수·객체·enum 없음, 팀 정원·문제 유형·과목·학년 상수 없음, 화면·실행 코드 연결 없음. 검증: 실행 코드 내 규칙값 중복 정의 없음 확인, `npm run lint`·`npx tsc --noEmit`·`npm run format:check`·`npm run build` 통과 (결과는 커밋 기록 참조).
 - 2026-08-02 — Step 2: 설정 고정. `.gitattributes`(LF 기준·바이너리 지정), `.env.example`(변수 이름만: NEXT_PUBLIC_SUPABASE_URL·NEXT_PUBLIC_SUPABASE_ANON_KEY·SUPABASE_SERVICE_ROLE_KEY), `.prettierrc`(tailwind 플러그인), `.prettierignore`(md 문서·산출물·자산 제외). `.gitignore` 보완(test-results·playwright-report 추가, `!.env.example` 예외). `eslint.config.mjs`에 eslint-config-prettier 적용. package.json에 format·format:check 스크립트 추가. devDependencies 추가: prettier 3.9.6, prettier-plugin-tailwindcss 0.8.1, eslint-config-prettier 10.1.8 (승인 A-6·A-7). `.env.local`은 실제 값이 없어 미생성(Step 5에서 작성).
 - 2026-08-02 — Step 1: Next.js 16.2.12 스캐폴딩 (`chore/sprint-1-setup` 브랜치). TypeScript·Tailwind v4·ESLint·App Router·`src/` 디렉터리·`@/*` 별칭·Turbopack. 생성 파일: `package.json`(이름 classquest-builder로 정정), `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `postcss.config.mjs`, `.gitignore`, `src/app/*`, `public/` 기본 에셋. 저장소에 기존 문서가 많아 임시 폴더에 생성 후 이식(제외: 스캐폴드의 README.md·CLAUDE.md·AGENTS.md — 기존 프로젝트 문서 보존).

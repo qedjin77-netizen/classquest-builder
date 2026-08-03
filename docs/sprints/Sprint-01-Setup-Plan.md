@@ -226,7 +226,8 @@
 | --- | --- |
 | V-1 | Next.js **16.2.12** (create-next-app 동일 버전). Node v24.15.0에서 설치·기동 정상 |
 | V-2 | Tailwind **v4.3.3** — CSS 기반 설정 채택 (`postcss.config.mjs` + `globals.css`의 `@import "tailwindcss"`). `tailwind.config.ts`는 만들지 않음 |
-| V-5 | Vitest 최신 4.1.10, @playwright/test 1.62.1 (설치는 Step 7) |
+| V-5 | Vitest 4.1.10 설치·동작 확인 — `rules.test.ts` 4개 통과. @vitejs/plugin-react 6.0.5, vite-tsconfig-paths 6.1.1 (Step 7, 2026-08-03) |
+| V-6 | Playwright 1.62.1 — **Chromium 바이너리 설치 성공**, smoke 테스트 1개 통과 (webServer 자동 기동, Step 7, 2026-08-03) |
 | V-7 | `npm install` 106초 완료, peer dependency 경고 없음. React 19.2.4, TypeScript 5.9.3 |
 | 참고 | 작업 위치가 로컬 C:로 이전되어 V-8의 "Z: 드라이브" 조건은 로컬 경로 기준으로 확인한다 |
 
@@ -464,8 +465,8 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 - [x] 규칙 상수 `src/lib/constants/rules.ts` 생성 — §2.4의 8개 상수, 단일 파일 (Step 6, 2026-08-03)
 - [ ] ~~Supabase 클라이언트·서버 경계 준비~~ — **이연** (2026-08-03, §12)
 - [x] `.env.example` 및 `.gitignore` 검증 — `!.env.example` 추적·`.env.local` 미추적·비밀값 없음 확인 (Step 2, 2026-08-02)
-- [ ] Vitest 예시 테스트 통과
-- [ ] Playwright smoke 테스트 통과
+- [x] Vitest 예시 테스트 통과 — `tests/unit/rules.test.ts` 4/4 (Step 7, 2026-08-03)
+- [x] Playwright smoke 테스트 통과 — `tests/e2e/smoke.spec.ts` 1/1, Chromium (Step 7, 2026-08-03)
 - [ ] `npm run lint`, `npm run test`, `npm run test:e2e`, `npm run build` 실행
 - [ ] 변경 파일·테스트 결과·미완료 항목 보고
 - [ ] `tasks/NEXT_TASK.md`·`changelog/Sprint-01.md` 갱신
