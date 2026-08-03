@@ -6,13 +6,15 @@
 | --- | --- |
 | 스프린트 | Sprint 1 (프로젝트 셋업) |
 | 작성일 | 2026-08-02 |
-| 상태 | **승인됨** (2026-08-02 — 계획 및 추가 의존성 A-1~A-7 전체 승인) |
+| 상태 | **완료** (2026-08-03 — Step 0~4·6~8 완료. Step 5는 §12에 따라 이연. 2026-08-02 계획·의존성 A-1~A-7 승인) |
 | 기준 요구사항 | Sprint 0에서 확정한 [../01_REQUIREMENTS_DECISIONS.md](../01_REQUIREMENTS_DECISIONS.md) (D-01 ~ D-12) |
 | 선행 문서 | [PROJECT.md](../../PROJECT.md) · [CLAUDE.md](../../CLAUDE.md) · [README.md](../../README.md) |
 
 > **문서 관계:** 기존 [../archive/02_SPRINT_00_PLAN_REPLACED.md](../archive/02_SPRINT_00_PLAN_REPLACED.md)는 같은 목표를 "Sprint 0"이라는 이름으로 다룬 이전 계획이며 승인되지 않았다. 스프린트 번호가 재정의되어(Sprint 0 = 요구사항 확정, Sprint 1 = 셋업) **이 문서가 그 계획을 대체한다.** 기존 문서는 이력으로 남긴다. 내용 중 유효한 검토 결과(환경 확인, 위험 분석)는 이 문서에 승계했다.
 
 > 이 문서는 계획이다. **승인 전에는 `npm install`, `create-next-app`, 코드 생성, 라이브러리 설치, Git 변경을 하지 않는다.**
+
+> **일정 변경 (2026-08-03):** **Step 5(Supabase 연결)는 UI와 기본 게임 흐름 구현 이후로 이연한다.** Sprint 1의 진행 순서는 **Step 4 → Step 6 → Step 7 → Step 8**이다. 이연 원칙과 완료 조건 조정은 [§12](#12-일정-변경--supabase-연결-이연-2026-08-03)를 본다.
 
 ---
 
@@ -33,8 +35,8 @@
 | --- | --- |
 | 문서 세트 v2.0 (`PROJECT.md`, `CLAUDE.md`, `README.md`, `docs/`, `tasks/`, `changelog/`, `decisions/`, `scripts/`) | 완료 — `d7c6a68`로 커밋됨 |
 | `assets/` (backgrounds, objects, characters, ui, audio, icons) | 빈 폴더 + `.gitkeep` |
-| `public/`, `supabase/`, `tests/` | 빈 폴더 + `.gitkeep` |
-| 애플리케이션 코드 | **없음** — `package.json`, 설정 파일, 소스 코드 일체 없음 |
+| `public/`, `supabase/`, `tests/` | 폴더 골격 생성됨 — `supabase/{migrations,seed}`, `tests/{unit,e2e}` + 용도 README (Step 4, 2026-08-03) |
+| 애플리케이션 코드 | ~~없음~~ → **Next.js 16.2.12 스캐폴딩 완료** (Step 1, 2026-08-02) + 설정 고정(Step 2)·Husky(Step 3)·폴더 골격(Step 4)·규칙 상수 `src/lib/constants/rules.ts`(Step 6, 2026-08-03) |
 
 ### 1.3 개발 환경 (Sprint 0 계획 검토 시 확인, 승계)
 
@@ -44,19 +46,19 @@
 | npm | 11.12.1 | 사용 가능 — **패키지 매니저는 npm으로 확정** |
 | Git | 2.54.0.windows.1 | 사용 가능 |
 | Docker | 없음 | Sprint 1에서는 불필요 (클라우드 Supabase 사용) |
-| Supabase CLI | 없음 | devDependency로 설치 예정 (§3.2) |
+| Supabase CLI | 없음 | ~~devDependency로 설치 예정 (§3.2)~~ → 설치 이연 (§12) |
 
-### 1.4 최우선 위험 — Z: 네트워크 드라이브
+### 1.4 최우선 위험 — Z: 네트워크 드라이브 (해소됨)
 
-프로젝트가 네트워크 드라이브(Z:)에 있다. **Sprint 1의 첫 관문은 아래 검증이다.**
+프로젝트가 네트워크 드라이브(Z:)에 있었다. Sprint 1의 첫 관문으로 아래를 검증했고, **2026-08-02 로컬 C:(`C:\Users\user\Documents\WM 게임 프로젝트\...\classquest-builder`)로 이전해 해소됐다.**
 
 | # | 확인 항목 | 결과 (2026-08-02 검증) |
 | --- | --- | --- |
 | W-1 | `npm install`이 Z: 드라이브에서 정상 완료되는가 (임시 폴더에서 소규모로 선검증) | **실패 확정** — node.exe가 Z:에서 파일 생성·쓰기 자체가 EPERM으로 거부됨. `npm init`·`npm install` 모두 불가. 동일 시험이 로컬 C:에서는 전부 성공 → Z: 드라이브 고유 문제. git.exe·PowerShell 쓰기는 정상이므로 node 계열 프로세스에 대한 차단(보안 소프트웨어 또는 드라이브 정책)으로 추정 |
-| W-2 | Next.js 개발 서버 파일 감시(HMR)가 동작하는가 | 미검증 — W-1 실패로 Z:에서는 개발 자체가 불가하여 무의미. 로컬 이전 후 재확인 |
+| W-2 | Next.js 개발 서버 파일 감시(HMR)가 동작하는가 | **통과** (2026-08-02, 로컬 이전 후) — 로컬 경로에서 dev 서버 기동 중 `page.tsx` 수정 시 153ms에 재컴파일 확인 |
 | W-3 | Git `safe.directory` 등록 | **완료** — 2026-08-02 등록됨 |
 
-> **판정: R-1 발생.** 계획 §9 R-1의 대응에 따라 **프로젝트를 로컬 디스크로 이전하는 결정이 필요하다.** Z:는 문서·자산 보관과 git 원격 동기화 용도로는 정상 동작한다.
+> **판정: R-1 발생 → 대응 완료.** 계획 §9 R-1의 대응에 따라 **2026-08-02 프로젝트를 로컬 디스크로 이전했다.** Z:의 옛 사본은 사용하지 않으며, 동기화는 git 원격(GitHub) 경유로만 한다.
 
 ---
 
@@ -90,8 +92,8 @@
 | `src/app/layout.tsx` | 루트 레이아웃 (`lang="ko"`) |
 | `src/app/page.tsx` | 임시 첫 페이지 |
 | `src/app/globals.css` | Tailwind 진입점 |
-| `src/lib/supabase/client.ts` | 브라우저 Supabase 클라이언트 (anon 키) |
-| `src/server/supabase/server.ts` | 서버 Supabase 클라이언트 — **최상단 `import 'server-only'`** |
+| `src/lib/supabase/client.ts` | ~~브라우저 Supabase 클라이언트 (anon 키)~~ — **이연** (§12) |
+| `src/server/supabase/server.ts` | ~~서버 Supabase 클라이언트 — 최상단 `import 'server-only'`~~ — **이연** (§12) |
 | `src/lib/constants/rules.ts` | 규칙 상수 8개 (§2.4) |
 
 ### 2.3 테스트 파일 (예시 각 1개)
@@ -195,6 +197,8 @@
 
 **이 7개 외에는 아무것도 추가하지 않는다.** 상태 관리, UI 컴포넌트, 폼, 날짜 라이브러리는 필요해지는 시점에 별도 승인을 받는다.
 
+> **일정 변경 (2026-08-03):** A-1(`@supabase/ssr`)·A-2(`server-only`)·A-5(`supabase` CLI)는 **승인은 유지하되 설치를 이연**한다. Supabase 연결 시점(§12)에 설치한다. A-3·A-4(Vitest 관련)·A-6·A-7(Prettier 관련)은 예정대로 진행한다.
+
 ### 3.3 명시적으로 넣지 않는 것
 
 - **LLM/AI SDK 일체** — CLAUDE.md 3.1 (`openai`, `@anthropic-ai/sdk`, `langchain` 등 전부 금지)
@@ -215,6 +219,17 @@
 | V-6 | Playwright 브라우저 바이너리 설치 성공 여부 | `npx playwright install` (실패 시 Chromium만) |
 | V-7 | Node 24와 각 패키지 호환성 | `npm install` 경고 확인 |
 | V-8 | Husky가 Z: 드라이브의 Git 훅에서 정상 동작하는가 | pre-commit 훅 실제 실행 |
+
+#### 확인 결과 기록 (2026-08-02, Step 1 착수 시점)
+
+| # | 결과 |
+| --- | --- |
+| V-1 | Next.js **16.2.12** (create-next-app 동일 버전). Node v24.15.0에서 설치·기동 정상 |
+| V-2 | Tailwind **v4.3.3** — CSS 기반 설정 채택 (`postcss.config.mjs` + `globals.css`의 `@import "tailwindcss"`). `tailwind.config.ts`는 만들지 않음 |
+| V-5 | Vitest 4.1.10 설치·동작 확인 — `rules.test.ts` 4개 통과. @vitejs/plugin-react 6.0.5, vite-tsconfig-paths 6.1.1 (Step 7, 2026-08-03) |
+| V-6 | Playwright 1.62.1 — **Chromium 바이너리 설치 성공**, smoke 테스트 1개 통과 (webServer 자동 기동, Step 7, 2026-08-03) |
+| V-7 | `npm install` 106초 완료, peer dependency 경고 없음. React 19.2.4, TypeScript 5.9.3 |
+| 참고 | 작업 위치가 로컬 C:로 이전되어 V-8의 "Z: 드라이브" 조건은 로컬 경로 기준으로 확인한다 |
 
 ---
 
@@ -358,7 +373,7 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 | Step 2 | 설정 고정 — strict, `.gitignore`, `.gitattributes`, `.env.example`/`.env.local`, Prettier | 40분 |
 | Step 3 | Husky + lint-staged 설정, pre-commit 동작 확인 (V-8) | 30분 |
 | Step 4 | 폴더 골격 생성 (§4, 한 줄 README 포함) | 30분 |
-| Step 5 | Supabase 클라우드 프로젝트 생성·연결 확인 (§3.2 A-1·A-2 사용) | 1시간 |
+| Step 5 | ~~Supabase 클라우드 프로젝트 생성·연결 확인 (§3.2 A-1·A-2 사용)~~ — **이연** (2026-08-03, §12) | - |
 | Step 6 | 규칙 상수 파일 생성 (§2.4) | 20분 |
 | Step 7 | Vitest·Playwright 설정 + 예시 테스트 각 1개 통과 | 1시간 30분 |
 | Step 8 | 전체 검증(dev·build·lint·tsc·test·e2e), README 채우기, 확인 결과 기록, PR | 40분 |
@@ -386,7 +401,7 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 | # | 조건 |
 | --- | --- |
 | C-8 | §4 폴더 구조 생성, 각 폴더에 용도 README |
-| C-9 | `src/server/` 파일에 `server-only` 적용 — 클라이언트에서 import 시 **빌드 실패를 직접 확인** |
+| C-9 | `src/server/` 파일에 `server-only` 적용 — 클라이언트에서 import 시 **빌드 실패를 직접 확인** — **이연** (§12, Supabase 연결 시점에 검증) |
 | C-10 | 규칙 상수가 `src/lib/constants/rules.ts` 한 곳에만 존재 |
 | C-11 | `tsconfig.json` `strict: true` |
 | C-12 | `git status`에 `.env.local` 미출현 |
@@ -440,17 +455,42 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 
 승인 후 Claude Code는 아래 항목을 순서대로 진행하고, 각 단계 종료 시 결과를 보고한다.
 
-- [ ] Z: 드라이브에서 npm 설치·파일 감시·Git safe.directory 선검증
-- [ ] Next.js App Router 프로젝트 초기화
-- [ ] TypeScript strict 및 경로 별칭 확인
-- [ ] Tailwind CSS 실제 설치 버전에 맞춰 설정
-- [ ] ESLint·Prettier 설정
-- [ ] Husky·lint-staged 설정
-- [ ] Supabase 클라이언트·서버 경계 준비
-- [ ] `.env.example` 및 `.gitignore` 검증
-- [ ] Vitest 예시 테스트 통과
-- [ ] Playwright smoke 테스트 통과
-- [ ] `npm run lint`, `npm run test`, `npm run test:e2e`, `npm run build` 실행
-- [ ] 변경 파일·테스트 결과·미완료 항목 보고
-- [ ] `tasks/NEXT_TASK.md`·`changelog/Sprint-01.md` 갱신
-- [ ] 사용자가 요청한 경우에만 Git commit/push 수행
+- [x] Z: 드라이브에서 npm 설치·파일 감시·Git safe.directory 선검증 — W-1 실패 → 로컬 C: 이전으로 해소, W-2·W-3 통과 (Step 0, 2026-08-02)
+- [x] Next.js App Router 프로젝트 초기화 — 16.2.12 (Step 1, 2026-08-02)
+- [x] TypeScript strict 및 경로 별칭 확인 (Step 1~2, 2026-08-02)
+- [x] Tailwind CSS 실제 설치 버전에 맞춰 설정 — v4.3.3, CSS 기반 (Step 1~2, 2026-08-02)
+- [x] ESLint·Prettier 설정 — eslint-config-prettier·prettier-plugin-tailwindcss 포함 (Step 2, 2026-08-02)
+- [x] Husky·lint-staged 설정 — 통과·차단 실시험 완료, V-8 통과 (Step 3, 2026-08-02)
+- [x] 폴더 골격 생성 — §4·§2.5의 20개 폴더 + 용도 한 줄 README, 선제 추상화 없음 (Step 4, 2026-08-03)
+- [x] 규칙 상수 `src/lib/constants/rules.ts` 생성 — §2.4의 8개 상수, 단일 파일 (Step 6, 2026-08-03)
+- [ ] ~~Supabase 클라이언트·서버 경계 준비~~ — **이연** (2026-08-03, §12)
+- [x] `.env.example` 및 `.gitignore` 검증 — `!.env.example` 추적·`.env.local` 미추적·비밀값 없음 확인 (Step 2, 2026-08-02)
+- [x] Vitest 예시 테스트 통과 — `tests/unit/rules.test.ts` 4/4 (Step 7, 2026-08-03)
+- [x] Playwright smoke 테스트 통과 — `tests/e2e/smoke.spec.ts` 1/1, Chromium (Step 7, 2026-08-03)
+- [x] `npm run lint`, `npm run test`, `npm run test:e2e`, `npm run build` 실행 — 전부 통과 (Step 8, 2026-08-03)
+- [x] 변경 파일·테스트 결과·미완료 항목 보고 — 각 Step 종료 시 수행
+- [x] `tasks/NEXT_TASK.md`·`changelog/Sprint-01.md` 갱신 — 각 Step 종료 시 수행
+- [x] 사용자가 요청한 경우에만 Git commit/push 수행 — 준수
+
+---
+
+## 12. 일정 변경 — Supabase 연결 이연 (2026-08-03)
+
+Project Owner 결정으로 **Step 5(Supabase 연결) 전체를 UI와 기본 게임 흐름 구현 이후로 이연**한다.
+
+### 원칙
+
+- **Supabase 클라우드 프로젝트를 현재 생성하지 않는다.**
+- **실제 키를 현재 발급하거나 어디에도 입력하지 않는다.** (`.env.example`은 변수 이름만 유지)
+- **Supabase 패키지(A-1·A-2·A-5)와 연결 코드를 현재 추가하지 않는다.**
+- **UI와 기본 게임 흐름은 mock data로 먼저 구현한다.**
+- **데이터 접근 계층은 나중에 Supabase로 교체하기 쉽도록 분리해 설계한다.**
+- **교사 로그인, 실시간 학생 참여, 데이터 저장을 구현하기 직전에 Supabase를 연결한다.**
+- **정식 운영 전에 RLS, 권한 분리, 개인정보 보호, 백업, 요금제를 검토한다.**
+
+### Sprint 1에 미치는 영향
+
+- 진행 순서: Step 4 → **Step 6(규칙 상수) → Step 7(테스트 설정) → Step 8(마무리·PR)**. Step 5는 수행하지 않는다.
+- 유지하는 것: `supabase/migrations`·`supabase/seed`·`src/lib/supabase`·`src/server/supabase` 폴더 골격과 README, `.env.example`의 변수 이름 3개 (값 없음).
+- 이연되는 완료 조건: C-9(server-only 빌드 실패 검증). C-12~C-15(비밀키 안전 조건)는 "실제 키가 존재하지 않음"으로 현재도 충족된다.
+- Supabase 연결 시점이 오면 이 문서의 Step 5 지시와 §3.2 A-1·A-2·A-5 승인을 그대로 사용한다.

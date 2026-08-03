@@ -1,0 +1,19 @@
+# 빌드 산출물·의존성
+node_modules/
+.next/
+out/
+build/
+coverage/
+test-results/
+playwright-report/
+
+# 자동 생성 파일
+package-lock.json
+next-env.d.ts
+
+# 프로젝트 문서 — 포맷은 수동 관리 (자동 재포맷으로 인한 대량 diff 방지)
+*.md
+
+# 자산
+assets/
+public/
