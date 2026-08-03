@@ -93,8 +93,19 @@
 
 ---
 
-## 합계와 제작 순서
+## 합계와 제작 시점
 
-- **총 34종** — P1 12종, P2 13종, P3 9종 (`assets/` 하위 분류 폴더에 저장, 목록은 추후 DB 마스터 데이터 시드로 이관)
-- 제작 순서: **P1(Step 4~8 착수 전) → P2(해당 화면 Step 중) → P3(Step 11 완성도 단계)**
-- 이미지 생성은 **각 Step에서 사용자 승인 후** 진행한다. 이 문서 단계에서는 생성하지 않는다.
+- **총 34종 — P1 14종, P2 14종, P3 6종** (`assets/` 하위 분류 폴더에 저장, 목록은 추후 DB 마스터 데이터 시드로 이관)
+- **이미지는 한꺼번에 만들지 않는다. 사용하는 화면의 해당 Step 직전에 필요한 것만 제작한다.**
+
+| 제작 시점 | 대상 (P1 14종의 배분) |
+| --- | --- |
+| Step 4 (시작 화면) 직전 | logo-classquest.png · student-adventurer.png · guide-star-fairy.png |
+| Step 8 (방 화면) 직전 | room-forest-bg.jpg · room-cave-bg.jpg · room-castle-bg.jpg · door-locked.png · door-open.png · chest-closed.png · chest-open.png |
+| Step 9 (상태·피드백) 직전 | icon-correct.png · icon-wrong.png · icon-hint.png · icon-clear.png |
+| 해당 화면 완성도 보완 시 | P2 14종 |
+| Step 11에서 필요성 재확인 후 | P3 6종 |
+
+- `start-bg.jpg`는 **P2 완성도 자산**이다. 제작 전에는 시작 화면을 CSS 배경(그라디언트 등) 또는 단순 placeholder로 구현할 수 있다.
+- 동일한 자산을 중복 생성하지 않는다. 각 이미지 제작은 **사용자 승인 후** 한 항목 또는 일관된 소규모 세트 단위로 진행한다.
+- 이미지가 준비되지 않아도 placeholder로 코드 구조를 검증할 수 있다 — 자산이 코드 Step을 막지 않는다.

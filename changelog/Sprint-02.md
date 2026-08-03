@@ -3,7 +3,7 @@
 ## Sprint 정보
 
 - 목표: UI·UX 확정 + mock data 기반 기본 게임 흐름 구현
-- 상태: **계획 승인 대기** (2026-08-03 계획 수립)
+- 상태: **계획 교정 완료 · 최종 승인 대기** (2026-08-03 계획 수립 → 검토 오류 교정). 다음 작업: 최종 승인 후 Step 1
 - 계획: [../docs/sprints/Sprint-02-UI-Mock-Game-Plan.md](../docs/sprints/Sprint-02-UI-Mock-Game-Plan.md)
 
 ## Added
@@ -20,9 +20,17 @@
 - changelog/README.md — 현재 Sprint를 Sprint 2(계획 승인 대기)로 갱신
 - docs/00_PROJECT_WORKFLOW.md — 문서 충돌 우선순위의 세부 설계 문서에 docs/design·docs/architecture 명시
 
+## Fixed
+
+- 2026-08-03 — 계획 검토 오류 교정 (구현·이미지·패키지 변경 없음):
+  - Art-Asset-Plan 합계 오기 정정: P1 12·P2 13·P3 9 → **P1 14·P2 14·P3 6** (표 실집계 기준. 총 34종·범주별 수량은 변동 없음, 항목 추가·삭제 없음)
+  - Step 4 자산 모순 해소: "P1 로고·배경·캐릭터 선행" → 선행 자산을 P1 3종(logo-classquest·student-adventurer·guide-star-fairy)으로 한정. `start-bg.jpg`는 P2 유지, 제작 전 CSS 배경/placeholder 사용 명시
+  - 자산 제작 시점 명확화: 일괄 선제작이 아니라 **사용하는 화면의 Step 직전에 필요한 것만** 제작 (Step 4: 3종 / Step 8: 7종 / Step 9: 4종 / P2: 완성도 보완 시 / P3: Step 11 재확인 후). 제작은 승인 후 소규모 세트, placeholder로 코드 검증 가능
+
 ## Decisions
 
-- 계획 승인 전 결정 없음. 승인 필요 항목은 계획서 §11 참조 (mock 정답 임시 예외, 신규 폴더, 세계관·캐릭터 안, 패키지 후보, 웹폰트).
+- **2026-08-03 승인됨 (계획서 §11.1):** ① mock 단계 한정 정답·판정의 클라이언트 데이터 계층 보관(임시 예외) ② 신규 폴더 src/lib/data·src/lib/mock·docs/design·docs/architecture ③ "별빛 탐험대" 세계관·학생 모험가·별 요정 캐릭터 방향 ④ 기본 상태 관리 React state+Context ⑤ 기본 폼 검증 직접 구현
+- **미승인 유지 (계획서 §11.2):** zustand·react-hook-form·zod·clsx 설치(필요 확인 Step에서 개별 승인), 한글 웹폰트(Step 1에서 후보·라이선스·성능 보고 후 승인)
 
 ## Verification
 
