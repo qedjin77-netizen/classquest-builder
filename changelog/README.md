@@ -4,8 +4,8 @@
 
 ## 현재 상태
 
-- 현재 Sprint: [Sprint 1](Sprint-01.md)
-- 완료된 Sprint: [Sprint 0](Sprint-00.md)
+- 현재 Sprint: 없음 — **Sprint 2 계획 수립 및 승인 대기**
+- 완료된 Sprint: [Sprint 0](Sprint-00.md) · [Sprint 1](Sprint-01.md) (2026-08-03 완료, Supabase 연결은 이연)
 
 ## 운영 규칙
 

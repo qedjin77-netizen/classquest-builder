@@ -1,10 +1,10 @@
 # Current Sprint
 
-Sprint 1
+**Sprint 1 — 완료 (2026-08-03).** 다음 작업: **Sprint 2 계획 수립 및 승인** (임의 구현 시작 금지)
 
 ## Goal
 
-프로젝트 개발 환경 구축
+프로젝트 개발 환경 구축 — 달성. Step 5(Supabase 연결)만 이연 (계획서 §12)
 
 ---
 
@@ -37,7 +37,7 @@ Sprint 1
 
 ## Current Blocker
 
-- 없음. Step 0~4·6·7 완료. **다음은 Step 8(전체 검증·README 정리·PR 준비)이다.** Step 5(Supabase 연결)는 이연됨 — 계획서 §12.
+- 없음. Step 0~4·6·7·8 완료 — **Sprint 1 종료.** 다음은 **Sprint 2 계획 수립 및 승인**이다. Step 5(Supabase 연결)는 이연됨 — 계획서 §12.
 
 ## Decision Needed
 

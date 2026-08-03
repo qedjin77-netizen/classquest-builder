@@ -103,18 +103,19 @@
 
 ## 현재 개발 상태
 
-**단계: 초기 설정 (문서화)**
-
-애플리케이션 코드는 아직 작성하지 않았다. 현재 저장소에는 프로젝트 문서와 폴더 구조만 있다.
+**단계: 프로젝트 셋업 완료 (Sprint 1, 2026-08-03)** — 게임 기능 구현은 아직 시작하지 않았다.
 
 | 항목 | 상태 |
 | --- | --- |
 | 프로젝트 문서 (`PROJECT.md`, `CLAUDE.md`, `README.md`) | 완료 |
-| 폴더 구조 | 완료 |
 | 요구사항 결정 기록 (`docs/01_REQUIREMENTS_DECISIONS.md`) | 완료 (2026-08-02 확정) |
 | 시스템 아키텍처 초안 (`docs/02_ARCHITECTURE.md`) | 완료 |
-| Next.js 프로젝트 초기화 | 예정 |
-| Supabase 스키마 · RLS | 예정 |
+| Next.js 프로젝트 초기화 | **완료** — Next.js 16.2.12, TypeScript strict, Tailwind v4, App Router |
+| 코드 품질 도구 | **완료** — ESLint + Prettier, Husky pre-commit(lint-staged) |
+| 테스트 환경 | **완료** — Vitest(단위) + Playwright(E2E, Chromium) 예시 테스트 통과 |
+| 폴더 골격 + 규칙 상수 | **완료** — `src/lib/constants/rules.ts` |
+| Supabase 연결 | **이연** — UI·기본 게임 흐름을 mock data로 구현한 이후 연결 (2026-08-03 결정, `docs/00_PROJECT_WORKFLOW.md` 데이터 계층 방침) |
+| Supabase 스키마 · RLS | 예정 (Supabase 연결 이후) |
 | 교사용 제작기 | 예정 |
 | 학생 플레이 화면 | 예정 |
 | 실시간 대시보드 | 예정 |
@@ -186,36 +187,73 @@ classquest-builder/
 
 ## 설치 및 실행
 
-> 아직 애플리케이션 코드가 없어 실행할 수 없다.
-> Next.js 프로젝트 초기화 후 아래 내용을 채운다.
-
 ### 요구 환경
 
-_(작성 예정 — Node.js 버전, 패키지 매니저)_
+- Node.js 24 (개발 기준: v24.15.0)
+- npm (패키지 매니저는 npm으로 고정)
 
 ### 설치
 
-_(작성 예정 — 의존성 설치 명령)_
+```bash
+npm install
+```
 
-### 환경 변수
-
-_(작성 예정 — Supabase URL/키 등. `service_role` 키는 절대 클라이언트에 노출하지 않는다.)_
+주요 설치 버전: Next.js 16.2.12 · React 19.2.4 · TypeScript 5.9.3 · Tailwind CSS 4.3.3 · Vitest 4.1.10 · Playwright 1.62.1 · Prettier 3.9.6 · ESLint 9 · Husky 9.1.7 · lint-staged 17.3.0
 
 ### 개발 서버 실행
 
-_(작성 예정)_
+```bash
+npm run dev
+```
+
+`http://localhost:3000`에서 열린다.
+
+### 프로덕션 빌드
+
+```bash
+npm run build
+npm run start
+```
+
+### 코드 검사
+
+```bash
+npm run lint
+npx tsc --noEmit
+npm run format:check
+```
+
+커밋 시 Husky pre-commit 훅이 staged 파일에 ESLint·Prettier를 자동 실행한다.
+
+### 단위 테스트 (Vitest)
+
+```bash
+npm run test
+npm run test:watch
+```
+
+### E2E 테스트 (Playwright)
+
+최초 1회 Chromium을 설치한 뒤 실행한다. dev 서버는 자동 기동된다.
+
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
+
+### 환경 변수
+
+- `.env.example`에는 **변수 이름만** 있다 (값 없음).
+- **Supabase 연결이 이연되어 현재는 `.env.local`이 필요하지 않다.**
+- 실제 연결 시점에 `.env.local`에 값을 넣어 사용하며, 이 파일은 Git에 올리지 않는다. `SUPABASE_SERVICE_ROLE_KEY`는 서버 전용이며 `NEXT_PUBLIC_` 접두사를 절대 붙이지 않는다.
 
 ### 데이터베이스 설정
 
-_(작성 예정 — Supabase 마이그레이션 및 시드 적용)_
-
-### 테스트 실행
-
-_(작성 예정 — Vitest, Playwright 명령)_
+_(이후 단계 — Supabase 연결 시점에 마이그레이션·시드 절차를 작성한다.)_
 
 ### 배포
 
-_(작성 예정 — Vercel)_
+_(이후 단계 — Vercel. 3개월차에 진행한다.)_
 
 ---
 

@@ -3,14 +3,15 @@
 ## Sprint 정보
 
 - 목표: 프로젝트 개발 환경 구축
-- 상태: 진행 중 — Step 0(검증)·1(스캐폴딩)·2(설정 고정)·3(Husky·lint-staged)·4(폴더 골격)·6(규칙 상수)·7(테스트 환경) 완료. **다음: Step 8(전체 검증·README 정리·PR 준비).** Step 5(Supabase 연결)는 이연 (2026-08-03 결정)
+- 상태: **완료 (2026-08-03)** — Step 0(검증)·1(스캐폴딩)·2(설정 고정)·3(Husky·lint-staged)·4(폴더 골격)·6(규칙 상수)·7(테스트 환경)·8(최종 검증·README·PR) 완료. Step 5(Supabase 연결)는 이연 유지 (2026-08-03 결정, 계획서 §12). **다음 작업: Sprint 2 계획 수립 및 승인**
 - 계획: [../docs/sprints/Sprint-01-Setup-Plan.md](../docs/sprints/Sprint-01-Setup-Plan.md)
 
 ## Added
 
+- 2026-08-03 — Step 8: 최종 검증·README 정리·PR 생성. README.md의 낡은 상태 문구("초기 설정(문서화)", "애플리케이션 코드 없음")를 현재 상태로 교정하고 "설치 및 실행"을 실제 명령으로 작성(요구 환경 Node 24·npm, install/dev/build/start/lint/tsc/format/test/test:watch/test:e2e, 환경 변수 안내 — Supabase 이연으로 `.env.local` 불필요 명시, DB·배포는 이후 단계 표시). 전체 검증 결과와 PR은 아래 Verification 참조.
 - 2026-08-03 — Step 7: 테스트 환경 구축. devDependencies 설치(승인 A-3·A-4 범위): vitest 4.1.10, @vitejs/plugin-react 6.0.5, vite-tsconfig-paths 6.1.1, @playwright/test 1.62.1 (모두 Node v24 호환 확인). 생성: `vitest.config.ts`(tests/unit 대상, `@/` 별칭 해석), `tests/unit/rules.test.ts`(규칙 상수 4개 검증), `playwright.config.ts`(tests/e2e 대상, Chromium 단일, webServer로 dev 서버 자동 기동), `tests/e2e/smoke.spec.ts`(첫 페이지 성공 응답 — 문구·디자인 비의존). package.json에 test·test:watch·test:e2e 스크립트 추가, tests README 2개 실명령 기준으로 갱신. 결과: **Vitest 4/4 통과(1.09s), Playwright 1/1 통과(23.9s, Chromium 설치 성공)**. Supabase 패키지·연결 없음.
 - 2026-08-03 — Step 6: 규칙 상수 `src/lib/constants/rules.ts` 생성. named export 숫자 상수 8개 (계획서 §2.4와 일치): `ROOM_COUNT=3` `MIN_QUESTIONS_PER_ROOM=3` `MAX_QUESTIONS_PER_ROOM=5` `HINT_UNLOCK_WRONG_COUNT=2` `HINTS_PER_QUESTION=1` `MIN_TEAM_COUNT=2` `MAX_TEAM_COUNT=6` `MAX_STUDENTS_PER_SESSION=30`. 함수·객체·enum 없음, 팀 정원·문제 유형·과목·학년 상수 없음, 화면·실행 코드 연결 없음. 검증: 실행 코드 내 규칙값 중복 정의 없음 확인, `npm run lint`·`npx tsc --noEmit`·`npm run format:check`·`npm run build` 통과 (결과는 커밋 기록 참조).
-- 2026-08-02 — Step 2: 설정 고정. `.gitattributes`(LF 기준·바이너리 지정), `.env.example`(변수 이름만: NEXT_PUBLIC_SUPABASE_URL·NEXT_PUBLIC_SUPABASE_ANON_KEY·SUPABASE_SERVICE_ROLE_KEY), `.prettierrc`(tailwind 플러그인), `.prettierignore`(md 문서·산출물·자산 제외). `.gitignore` 보완(test-results·playwright-report 추가, `!.env.example` 예외). `eslint.config.mjs`에 eslint-config-prettier 적용. package.json에 format·format:check 스크립트 추가. devDependencies 추가: prettier 3.9.6, prettier-plugin-tailwindcss 0.8.1, eslint-config-prettier 10.1.8 (승인 A-6·A-7). `.env.local`은 실제 값이 없어 미생성(Step 5에서 작성).
+- 2026-08-02 — Step 2: 설정 고정. `.gitattributes`(LF 기준·바이너리 지정), `.env.example`(변수 이름만: NEXT_PUBLIC_SUPABASE_URL·NEXT_PUBLIC_SUPABASE_ANON_KEY·SUPABASE_SERVICE_ROLE_KEY), `.prettierrc`(tailwind 플러그인), `.prettierignore`(md 문서·산출물·자산 제외). `.gitignore` 보완(test-results·playwright-report 추가, `!.env.example` 예외). `eslint.config.mjs`에 eslint-config-prettier 적용. package.json에 format·format:check 스크립트 추가. devDependencies 추가: prettier 3.9.6, prettier-plugin-tailwindcss 0.8.1, eslint-config-prettier 10.1.8 (승인 A-6·A-7). `.env.local`은 실제 값이 없어 미생성(Supabase 연결 시점에 작성 — 이후 이연 결정).
 - 2026-08-02 — Step 1: Next.js 16.2.12 스캐폴딩 (`chore/sprint-1-setup` 브랜치). TypeScript·Tailwind v4·ESLint·App Router·`src/` 디렉터리·`@/*` 별칭·Turbopack. 생성 파일: `package.json`(이름 classquest-builder로 정정), `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `postcss.config.mjs`, `.gitignore`, `src/app/*`, `public/` 기본 에셋. 저장소에 기존 문서가 많아 임시 폴더에 생성 후 이식(제외: 스캐폴드의 README.md·CLAUDE.md·AGENTS.md — 기존 프로젝트 문서 보존).
 
 ## Changed
@@ -70,6 +71,14 @@
 - **통과 시험**: 정상 TS 파일 stage → pre-commit에서 eslint·prettier 실행 로그 확인 → 커밋 성공. 시험 커밋은 `git reset HEAD~1`로 제거.
 - **차단 시험**: 구문 오류 TS 파일 stage → eslint 파싱 오류로 훅 실패(`husky - pre-commit script failed (code 1)`) → **커밋 차단 확인**, HEAD 불변. 시험 파일 제거.
 - V-8(pre-commit 실동작): **통과** — 로컬 경로 기준.
+
+### 2026-08-03 — Step 8: Sprint 1 최종 검증
+
+- 실행 명령별 결과 (모두 통과): `npm run dev` 첫 페이지 HTTP 200 후 종료 · `npm run lint` exit 0 · `npx tsc --noEmit` exit 0 · `npm run format:check` 통과 · `npm run test` **Vitest 4/4 통과** · `npm run test:e2e` **Playwright 1/1 통과(Chromium)** · `npm run build` exit 0.
+- `npm audit`: **high 3건 — `sharp` (직접 의존성 아님, `next`의 전이 의존성).** 제안된 자동 수정(`npm audit fix --force`)이 `next@9.3.3`으로의 메이저 다운그레이드라 **적용하지 않음.** 패키지 버전 임의 변경 없음. Next 패치 릴리스에서 해소 여부를 추후 확인한다.
+- 구조·보안 검증 (모두 통과): 폴더 골격 20개+README 유지 · rules.ts 상수 8개 정확 · 실행 코드 내 규칙값 중복 정의 없음 · TypeScript strict 활성 · `.env.example` 추적됨 · `.env.local`·`.env*` 미추적 · 추적 파일 내 비밀값 없음(스캔) · `NEXT_PUBLIC_` 접두사 서버 키 없음 · `.next`/`node_modules`/`coverage`/`test-results`/`playwright-report` 미추적 · Supabase 패키지·연결 코드 없음 · 테스트 후 dev 서버·Playwright·Chromium 잔류 프로세스 없음(포트 3000의 TimeWait 소켓 잔상만 확인됨, 라이브 서버 아님).
+- 최종 설치 버전: Next.js 16.2.12 · React 19.2.4 · TypeScript 5.9.3 · Tailwind 4.3.3 · Vitest 4.1.10 · @vitejs/plugin-react 6.0.5 · vite-tsconfig-paths 6.1.1 · @playwright/test 1.62.1 · Prettier 3.9.6 · prettier-plugin-tailwindcss 0.8.1 · eslint-config-prettier 10.1.8 · Husky 9.1.7 · lint-staged 17.3.0.
+- 미완료(의도적): Step 5 Supabase 연결 — 이연 결정 유지. C-9(server-only 빌드 실패 검증)도 연결 시점으로 이연.
 - Step 3 종료 시 최종 검사 (모두 통과): `npm run lint` exit 0 · `npx tsc --noEmit` exit 0 · `npm run format:check` "All matched files use Prettier code style!" · `npm run build` exit 0 (정적 라우트 `/`·`/_not-found` 생성) · 최종 `git status`: 커밋 `b751bb4` push 후 working tree clean, origin과 동기화.
 
 ### 2026-08-03 — Step 4: 폴더 골격 생성·검증

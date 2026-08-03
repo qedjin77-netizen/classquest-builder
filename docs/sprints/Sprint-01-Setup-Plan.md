@@ -6,7 +6,7 @@
 | --- | --- |
 | 스프린트 | Sprint 1 (프로젝트 셋업) |
 | 작성일 | 2026-08-02 |
-| 상태 | **승인됨** (2026-08-02 — 계획 및 추가 의존성 A-1~A-7 전체 승인) |
+| 상태 | **완료** (2026-08-03 — Step 0~4·6~8 완료. Step 5는 §12에 따라 이연. 2026-08-02 계획·의존성 A-1~A-7 승인) |
 | 기준 요구사항 | Sprint 0에서 확정한 [../01_REQUIREMENTS_DECISIONS.md](../01_REQUIREMENTS_DECISIONS.md) (D-01 ~ D-12) |
 | 선행 문서 | [PROJECT.md](../../PROJECT.md) · [CLAUDE.md](../../CLAUDE.md) · [README.md](../../README.md) |
 
@@ -467,10 +467,10 @@ Sprint 1 작업 전체를 이 브랜치에서 진행하고, 완료 후 PR로 `ma
 - [x] `.env.example` 및 `.gitignore` 검증 — `!.env.example` 추적·`.env.local` 미추적·비밀값 없음 확인 (Step 2, 2026-08-02)
 - [x] Vitest 예시 테스트 통과 — `tests/unit/rules.test.ts` 4/4 (Step 7, 2026-08-03)
 - [x] Playwright smoke 테스트 통과 — `tests/e2e/smoke.spec.ts` 1/1, Chromium (Step 7, 2026-08-03)
-- [ ] `npm run lint`, `npm run test`, `npm run test:e2e`, `npm run build` 실행
-- [ ] 변경 파일·테스트 결과·미완료 항목 보고
-- [ ] `tasks/NEXT_TASK.md`·`changelog/Sprint-01.md` 갱신
-- [ ] 사용자가 요청한 경우에만 Git commit/push 수행
+- [x] `npm run lint`, `npm run test`, `npm run test:e2e`, `npm run build` 실행 — 전부 통과 (Step 8, 2026-08-03)
+- [x] 변경 파일·테스트 결과·미완료 항목 보고 — 각 Step 종료 시 수행
+- [x] `tasks/NEXT_TASK.md`·`changelog/Sprint-01.md` 갱신 — 각 Step 종료 시 수행
+- [x] 사용자가 요청한 경우에만 Git commit/push 수행 — 준수
 
 ---
 
