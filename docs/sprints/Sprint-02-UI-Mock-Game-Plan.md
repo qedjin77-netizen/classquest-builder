@@ -74,7 +74,7 @@
 
 ## 8. mock data 구조
 
-[Mock-Data-Architecture.md](../architecture/Mock-Data-Architecture.md) 기준. 요약: `src/lib/data/`(계약+mock 구현)·`src/lib/mock/fixtures.ts`(샘플 게임 1개)·`src/types/`(공용 타입). 판정·힌트 해제 로직은 데이터 계층 안에만 두고 화면은 결과만 받는다. **mock 단계의 정답 클라이언트 보관은 임시 예외로 승인 대상** (§11-1).
+[Mock-Data-Architecture.md](../architecture/Mock-Data-Architecture.md) 기준. 요약: `src/lib/data/`(계약+mock 구현)·`src/lib/mock/fixtures.ts`(샘플 게임 1개)·`src/types/`(공용 타입). 판정·힌트 해제 로직은 데이터 계층 안에만 두고 화면은 결과만 받는다. **mock 단계의 정답 클라이언트 보관은 승인된 임시 예외** (§11.1).
 
 ## 9. 아트 자산
 
